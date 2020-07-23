@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "declaration": false,
+    "inlineSourceMap": false,
+    "newLine": "lf",
+    "pretty": true,
+    "strict": true,
+    "strictNullChecks": false,
+    "forceConsistentCasingInFileNames": true,
+    "disableSizeLimit": true,
+    "outDir": "dist/",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "lib": ["ES2019"],
+    "types": ["node"]
+  },
+  "exclude": ["./dist/", "./tests/"]
+}
