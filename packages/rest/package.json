@@ -1,6 +1,6 @@
 {
   "name": "@lavaclient/rest",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A lavaclient plugin that adds REST functionality to lavaclient.",
   "main": "dist/index.js",
   "types": "index.d.ts",
