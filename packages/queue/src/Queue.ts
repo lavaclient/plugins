@@ -145,7 +145,7 @@ export class Queue extends EventEmitter {
    * @since 1.0.0
    */
   public shuffle(): void {
-    for (let i = this.tracks.length; i > 0; i--) {
+    for (let i = this.tracks.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [ this.tracks[i], this.tracks[j] ] = [ this.tracks[j], this.tracks[i] ];
     }
