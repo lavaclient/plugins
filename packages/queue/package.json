@@ -1,6 +1,6 @@
 {
   "name": "@lavaclient/queue",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "A lavaclient plugin that adds queue functionality",
   "main": "dist/index.js",
   "types": "index.d.ts",
@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/lavaclient/plugins/issues"
   },
-  "homepage": "https://github.com/lavaclient/plugins#readme",
+  "homepage": "https://lavaclient.js.org/",
   "devDependencies": {
     "@types/node": "^14.0.24",
     "discord.js": "^12.2.0",

@@ -7,10 +7,12 @@ export class Queue extends EventEmitter {
    * The tracks that are in this queue.
    */
   public readonly tracks: Song[];
+
   /**
    * The player for this queue.
    */
   public readonly player: Player;
+
   /**
    * The previously played songs.
    */
@@ -20,18 +22,21 @@ export class Queue extends EventEmitter {
    * Whether this queue has been started or not.
    */
   public started: boolean;
+
   /**
    * The currently playing song.
    */
   public current?: Song;
+
   /**
    * The current length of the queue.
    */
   public length: number;
+
   /**
    * The type of loop that is occurring.
    */
-  private _loop: "song" | "queue";
+  private _loop?: "song" | "queue";
 
   /**
    * @param player
@@ -46,8 +51,8 @@ export class Queue extends EventEmitter {
         if (event && ![ "REPLACED" ].includes(event.reason)) {
           this.emit("trackEnd", this.current);
 
-          if (this._loop === "song") this.tracks.unshift(this.current);
-          else this.previous.unshift(this.current);
+          if (this._loop === "song") this.tracks.unshift(this.current!);
+          else this.previous.unshift(this.current!);
 
           this._next();
 
@@ -84,7 +89,7 @@ export class Queue extends EventEmitter {
    * Skips the current song and returns the new playing one.
    * @since 2.0.1
    */
-  public async skip(): Promise<Song> {
+  public async skip(): Promise<Song | undefined> {
     await this.player.stop();
     return this.current;
   }
@@ -95,6 +100,7 @@ export class Queue extends EventEmitter {
    */
   public async start(): Promise<boolean> {
     if (!this.current) this._next();
+    if (!this.current) return false
     await this.player.play(this.current.track);
     return this.started = true;
   }
@@ -106,10 +112,14 @@ export class Queue extends EventEmitter {
    * @since 1.00.
    */
   public add(songs: Addable | Array<Addable>, requester?: string | Record<string, any>): number {
-    const requesterId = requester ? typeof requester === "string" ? requester : requester.id : null;
+    const requesterId = requester
+      ? typeof requester === "string"
+        ? requester
+        : requester.id
+      : null;
     for (const song of (Array.isArray(songs) ? songs : [ songs ])) {
       this.length++;
-      let toAdd: Song;
+      let toAdd: Song | null = null;
 
       if (song instanceof Song) toAdd = song;
       else if (typeof song === "string") toAdd = new Song(song, requesterId);
@@ -145,7 +155,7 @@ export class Queue extends EventEmitter {
    * @since 1.0.0
    */
   public shuffle(): void {
-    for (let i = this.tracks.length; i > 0; i--) {
+    for (let i = this.tracks.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [ this.tracks[i], this.tracks[j] ] = [ this.tracks[j], this.tracks[i] ];
     }

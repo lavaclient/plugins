@@ -1,14 +1,50 @@
 import { decode } from "@lavalink/encoding";
 
-export class Song {
+export class Song implements TrackInfo {
   /**
    * The base64 lavaplayer track.
    */
   public track: string;
+
   /**
    * The user that requested this song.
    */
   public requester?: string;
+
+  /**
+   * The length of this track.
+   */
+  public length: number;
+
+  /**
+   * The identifier of this track.
+   */
+  public identifier: string;
+
+  /**
+   * The author of this track.
+   */
+  public author: string;
+
+  /**
+   * Whether this track is a stream.
+   */
+  public isStream: boolean;
+
+  /**
+   * The position of this track
+   */
+  public position: number;
+
+  /**
+   * The title of this track.
+   */
+  public title: string;
+
+  /**
+   * The uri of this track.
+   */
+  public uri: string;
 
   /**
    * @param track
@@ -17,67 +53,15 @@ export class Song {
   public constructor(track: string, requester?: string) {
     this.track = track;
     this.requester = requester;
-  }
 
-  /**
-   * The decoded lavaplayer track.
-   */
-  public get decoded(): TrackInfo {
     const decoded = decode(this.track);
-    return {
-      ...decoded,
-      length: Number(decoded.length),
-      position: Number(decoded.position)
-    } as any;
-  }
-
-  /**
-   * The length of this track.
-   */
-  public get length(): number {
-    return this.decoded.length;
-  }
-
-  /**
-   * The identifier of this track.
-   */
-  public get identifier(): string {
-    return this.decoded.identifier;
-  }
-
-  /**
-   * The author of this track.
-   */
-  public get author(): string {
-    return this.decoded.author;
-  }
-
-  /**
-   * Whether this track is a stream.
-   */
-  public get isStream(): boolean {
-    return this.decoded.isStream;
-  }
-
-  /**
-   * The position of this track
-   */
-  public get position(): number {
-    return this.decoded.position;
-  }
-
-  /**
-   * The title of this track.
-   */
-  public get title(): string {
-    return this.decoded.title;
-  }
-
-  /**
-   * The uri of this track.
-   */
-  public get uri(): string {
-    return this.decoded.uri;
+    this.length = Number(decoded.length);
+    this.identifier = decoded.identifier;
+    this.author = decoded.author;
+    this.isStream = decoded.isStream;
+    this.position = Number(decoded.position);
+    this.title = decoded.title;
+    this.uri = decoded.uri!;
   }
 }
 
