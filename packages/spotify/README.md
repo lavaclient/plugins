@@ -48,7 +48,7 @@ If you need any support join <https://discord.gg/vuJxnYk>.
 
 ##### Disclaimer
 
-Leaving the "autoResolveYoutubeVideos" option on is prune to you getting banned from youtube, unless you have IP
-rotation set up. However it's much slower.
+Leaving the "autoResolveYoutubeVideos" option on is much slower and could get you banned from youtube, unless you have IP
+rotation set up.
 
 melike2d &copy; 2020 - 2021
