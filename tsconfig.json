@@ -27,6 +27,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "pretty": true,
+    "importsNotUsedAsValues": "error",
 
     /* Types */
     "types": ["node"],
