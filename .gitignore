@@ -1,5 +1,3 @@
-typedoc.json
-
 # Logs
 logs
 *.log
@@ -30,6 +28,7 @@ yarn.lock
 
 # Documentation
 docs/
+typedoc.json
 
 # Build
 dist/
