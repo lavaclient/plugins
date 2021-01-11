@@ -26,10 +26,6 @@ coverage*
 package-lock.json
 yarn.lock
 
-# Documentation
-docs/
-typedoc.json
-
 # Build
 dist/
 tsconfig.tsbuildinfo

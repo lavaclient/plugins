@@ -3,6 +3,7 @@ node_modules/
 tests/
 docs/
 .github/
+typedoc.json
 
 .gitignore
 .eslintrc
