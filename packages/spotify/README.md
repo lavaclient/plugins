@@ -1,11 +1,10 @@
-# Lavaclient Queue Support
+# Lavaclient Spotify Support
 
 > A lavaclient plugin that makes it easy to integrate spotify searching into any project.
 
 - **✅ verified**: This is a verified Lavaclient plugin.
 
-[Support](https://discord.gg/vuJxnYk)
-&bull; [Github](https://github.com/lavaclient/plugins/tree/master/packages/spotify)
+[Support](https://discord.gg/vuJxnYk) &bull; [Github](https://github.com/lavaclient/plugins/tree/master/packages/spotify) &bull; [Documentation](https://github.com/lavaclient/plugins/tree/master/packages/spotify/docs)
 
 ## Installation
 
@@ -33,11 +32,11 @@ const manager = new Manager([], {
 });
 
 // example: in a command or something.
-if (manager.spotify.isSpotifyLink(query)) {
+if (manager.spotify.isSpotifyUrl(query)) {
   const item = await manager.spotify.load(query)
   if (item instanceof SpotifyTrack) {
     const track = await item.resolveYoutubeTrack()
-    await player.play(item)
+    await player.play(track)
   }
 }
 ```
@@ -48,7 +47,7 @@ If you need any support join <https://discord.gg/vuJxnYk>.
 
 ##### Disclaimer
 
-Leaving the "autoResolveYoutubeVideos" option on is much slower and could get you banned from youtube, unless you have IP
-rotation set up.
+Leaving the "autoResolveYoutubeVideos" option on is much slower and could get you banned from youtube, unless you have
+IP rotation set up.
 
 melike2d &copy; 2020 - 2021
