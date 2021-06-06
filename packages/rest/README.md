@@ -4,7 +4,7 @@
 
 - **✅ Verified**: This is a verified Lavaclient plugin.
 
-[Support](https://discord.gg/vuJxnYk) &bull; [Github](https://github.com/lavaclient/plugins)
+[Support](https://discord.gg/CH9ubGPMV6) &bull; [Github](https://github.com/lavaclient/plugins)
 
 ## Installation
 
