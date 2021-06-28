@@ -1,6 +1,7 @@
 import { EventEmitter } from "events";
-import { Player } from "lavaclient";
 import { Song } from "./Song";
+
+import type { Player } from "lavaclient";
 
 export class Queue extends EventEmitter {
   /**
