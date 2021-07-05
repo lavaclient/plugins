@@ -1,11 +1,13 @@
 import { Loader } from "../abstract/Loader";
+import { SpotifyItemType } from "../abstract/SpotifyItem";
+
 import { SpotifyTrack } from "./SpotifyTrack";
 
 import type { SpotifyManager } from "../SpotifyManager";
 import type { Spotify } from "../spotify";
 
 export class SpotifyTrackLoader extends Loader {
-  itemType: "track" = "track";
+  itemType: SpotifyItemType.Track = SpotifyItemType.Track;
 
   /**
    * The regex patterns used for identifying different types of spotify urls.

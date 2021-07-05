@@ -1,17 +1,18 @@
 import { Loader } from "../abstract/Loader";
 import { SpotifyAlbum } from "./SpotifyAlbum";
+import { SpotifyItemType } from "../abstract/SpotifyItem";
 
 import type { SpotifyManager } from "../SpotifyManager";
 import type { SpotifyTrack } from "./SpotifyTrack";
 import type { Spotify } from "../spotify";
 
 export class SpotifyAlbumLoader extends Loader {
-  itemType: "album" = "album";
+  itemType: SpotifyItemType.Album = SpotifyItemType.Album;
 
   /**
    * The regex patterns used for identifying different types of spotify urls.
    */
-  matchers = [ /^(?:https?:\/\/|)?(?:www\.)?open\.spotify\.com\/album\/([a-zA-Z\d-_]+)/, /spotify:album:([a-zA-Z\d-_]+)$/ ];
+  matchers = [ /^(?:https?:\/\/|)?(?:www\.)?open\.spotify\.com\/album\/([a-zA-Z\d-_]+)/, /^spotify:album:([a-zA-Z\d-_]+)$/ ];
 
   /**
    * Loads an album from the spotify api.

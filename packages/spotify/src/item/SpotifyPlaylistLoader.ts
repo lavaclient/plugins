@@ -1,4 +1,5 @@
 import { Loader } from "../abstract/Loader";
+import { SpotifyItemType } from "../abstract/SpotifyItem";
 
 import { SpotifyAlbum } from "./SpotifyAlbum";
 import { SpotifyPlaylist } from "./SpotifyPlaylist";
@@ -8,7 +9,7 @@ import type { SpotifyTrack } from "./SpotifyTrack";
 import type { Spotify } from "../spotify";
 
 export class SpotifyPlaylistLoader extends Loader {
-  itemType: "playlist" = "playlist";
+  itemType: SpotifyItemType.Playlist = SpotifyItemType.Playlist;
 
   /**
    * The regex patterns used for identifying different types of spotify urls.

@@ -1,15 +1,23 @@
 import fetch from "node-fetch";
 
+import { SpotifyItemType } from "./abstract/SpotifyItem";
+
+/* different loaders. */
 import { SpotifyAlbumLoader } from "./item/SpotifyAlbumLoader";
 import { SpotifyPlaylistLoader } from "./item/SpotifyPlaylistLoader";
 import { SpotifyTrackLoader } from "./item/SpotifyTrackLoader";
+import { SpotifyArtistLoader } from "./item/SpotifyArtistLoader";
 
 import type { Dictionary, Manager } from "lavaclient";
-import type { SpotifyItemType } from "./abstract/SpotifyItem";
 import type { Item, Loader } from "./abstract/Loader";
 
 export class SpotifyManager {
   static readonly BASE_URL = "https://api.spotify.com/v1";
+  static readonly SOURCE_PREFIX = {
+    "youtube": "ytsearch:",
+    "youtube music": "ytmsearch:",
+    "soundcloud": "scsearch:"
+  }
 
   /**
    * The lavaclient manager.
@@ -42,6 +50,22 @@ export class SpotifyManager {
   albumLimit: number;
 
   /**
+   * The source used for resolving lavalink tracks.
+   */
+  searchPrefix: string;
+
+  /**
+   * The search format used when resolving lavalink tracks.
+   * @type {string}
+   */
+  searchFormat: string;
+
+  /**
+   * The market to use.
+   */
+  market: string;
+
+  /**
    * The token to use.
    * @private
    */
@@ -70,8 +94,11 @@ export class SpotifyManager {
     this.autoResolveYoutubeVideos = options.autoResolveYoutubeVideos ?? true;
     this.albumLimit = options.albumLimit ?? 1;
     this.playlistLimit = options.playlistLimit ?? 1;
-    this.loaders = [ new SpotifyAlbumLoader(), new SpotifyPlaylistLoader(), new SpotifyTrackLoader() ]
+    this.loaders = [ new SpotifyAlbumLoader(), new SpotifyPlaylistLoader(), new SpotifyTrackLoader(), new SpotifyArtistLoader() ]
       .filter(l => !options.disabledItems?.includes(l.itemType) ?? true);
+    this.searchPrefix = SpotifyManager.SOURCE_PREFIX[options.searchPrefix ?? "youtube"];
+    this.searchFormat = options.searchFormat ?? "{artist} {track}";
+    this.market = options.market?.toUpperCase() ?? "US";
 
     this.#clientId = options.clientId;
     this.#clientSecret = options.clientSecret;
@@ -156,14 +183,12 @@ export class SpotifyManager {
 
     if (this.autoResolveYoutubeVideos) {
       switch (item.type) {
-        case "album":
-        case "playlist":
-          for (const track of item.tracks) {
-            await track.resolveLavalinkTrack();
-          }
-
+        case SpotifyItemType.Album:
+        case SpotifyItemType.Artist:
+        case SpotifyItemType.Playlist:
+          await item.resolveAllTracks();
           break;
-        case "track":
+        case SpotifyItemType.Track:
           await item.resolveLavalinkTrack();
           break;
       }
@@ -199,6 +224,8 @@ export class SpotifyManager {
 
 }
 
+export type SearchPrefix = "youtube" | "youtube music" | "soundcloud"
+
 export interface SpotifyManagerOptions {
   /**
    * Total numbers of pages to load, each page having 100 tracks.
@@ -229,4 +256,24 @@ export interface SpotifyManagerOptions {
    * Whether to automatically fetch the youtube video for spotify tracks.
    */
   autoResolveYoutubeVideos?: boolean;
+
+  /**
+   * The search prefix used for resolving lavalink tracks, defaults to "youtube".
+   */
+  searchPrefix?: SearchPrefix;
+
+  /**
+   * The search format used when resolving lavalink tracks, defaults to "{artist} {track name}"
+   * Available keys:
+   * - {artist} Artist Name
+   * - {track} Track Name
+   */
+  searchFormat?: string;
+
+  /**
+   * The market to use, must be a ISO 3166-1 alpha-2 country code.
+   *
+   * @see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+   */
+  market?: string;
 }

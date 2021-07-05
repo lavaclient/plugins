@@ -1,11 +1,12 @@
-import { SpotifyItem } from "../abstract/SpotifyItem";
+import { SpotifyItem, SpotifyItemType } from "../abstract/SpotifyItem";
 import { SpotifyTrack } from "./SpotifyTrack";
 
+import type * as Lavalink from "@lavaclient/types";
 import type { SpotifyManager } from "../SpotifyManager";
 import type { Spotify } from "../spotify";
 
 export class SpotifyAlbum extends SpotifyItem {
-  readonly type: "album" = "album";
+  readonly type: SpotifyItemType.Album = SpotifyItemType.Album;
 
   /**
    * The album data.
@@ -68,4 +69,14 @@ export class SpotifyAlbum extends SpotifyItem {
 
     return this.data.images.sort((a, b) => b.width! - a.width!)[0].url;
   }
+
+  /**
+   * Resolves every track in this album.
+   * @returns The resolved lavalink tracks.
+   */
+  async resolveAllTracks(): Promise<Lavalink.Track[]> {
+    const promises = this.tracks.map(t => t.resolveLavalinkTrack());
+    return await Promise.all(promises);
+  }
+
 }

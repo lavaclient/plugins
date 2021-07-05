@@ -1,11 +1,11 @@
-import { SpotifyItem } from "../abstract/SpotifyItem";
+import { SpotifyItem, SpotifyItemType } from "../abstract/SpotifyItem";
 
 import type * as Lavalink from "@lavaclient/types";
 import type { SpotifyManager } from "../SpotifyManager";
 import type { Spotify } from "../spotify";
 
 export class SpotifyTrack extends SpotifyItem {
-  type: "track" = "track";
+  type: SpotifyItemType.Track = SpotifyItemType.Track;
 
   /**
    * The spotify track data.
@@ -51,7 +51,6 @@ export class SpotifyTrack extends SpotifyItem {
 
   /**
    * The artwork for this track.
-   * @returns {string}
    */
   get artwork(): string {
     const undef = this.album.images.some(i => !i.height || !i.width);
@@ -70,9 +69,12 @@ export class SpotifyTrack extends SpotifyItem {
       return this.#track;
     }
 
-    const query = `ytsearch:${this.data.name} ${this.data.artists[0].name}`,
-      searchResults = await this.manager.lavaclient.search(query);
+    let query = `${this.manager.searchPrefix}`;
+    query += this.manager.searchFormat
+        .replace("{track}", this.data.name)
+        .replace("{artist}", this.data.artists[0].name);
 
+    const searchResults = await this.manager.lavaclient.search(query);
     return this.#track = searchResults.tracks[0];
   }
 }

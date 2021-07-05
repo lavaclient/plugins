@@ -25,4 +25,9 @@ export abstract class SpotifyItem {
 
 }
 
-export type SpotifyItemType = "album" | "playlist" | "track";
+export enum SpotifyItemType {
+  Artist,
+  Playlist,
+  Track,
+  Album
+}
