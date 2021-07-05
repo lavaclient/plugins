@@ -1,4 +1,4 @@
-import fetch from "node-fetch";
+import fetch from "petitio";
 
 import { SpotifyItemType } from "./abstract/SpotifyItem";
 
@@ -156,8 +156,9 @@ export class SpotifyManager {
             authorization: `Bearer ${this.token}`,
         };
 
-        return fetch(`${prefixBaseUrl ? SpotifyManager.BASE_URL : ""}${endpoint}`, { headers })
-            .then(r => r.json());
+        return fetch(`${prefixBaseUrl ? SpotifyManager.BASE_URL : ""}${endpoint}`)
+            .header(headers)
+            .json();
     }
 
     /**
@@ -205,14 +206,9 @@ export class SpotifyManager {
         const {
             expires_in,
             access_token,
-        } = await fetch("https://accounts.spotify.com/api/token?grant_type=client_credentials", {
-            method: "post",
-            headers: {
-                authorization: `Basic ${this.encoded}`,
-                "content-type": "application/x-www-form-urlencoded",
-            },
-        })
-            .then(r => r.json());
+        } = await fetch("https://accounts.spotify.com/api/token?grant_type=client_credentials", "POST")
+            .header({ authorization: `Basic ${this.encoded}`, "content-type": "application/x-www-form-urlencoded" })
+            .json();
 
         if (!access_token) {
             throw new Error("Invalid spotify client id.");
