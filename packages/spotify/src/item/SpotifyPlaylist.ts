@@ -1,6 +1,6 @@
 import { SpotifyItem, SpotifyItemType } from "../abstract/SpotifyItem";
 
-import * as Lavalink from "@lavaclient/types";
+import type * as Lavalink from "@lavaclient/types";
 import type { SpotifyTrack } from "./SpotifyTrack";
 import type { SpotifyManager } from "../SpotifyManager";
 import type { Spotify } from "../spotify";

@@ -3,7 +3,7 @@ import { SpotifyTrack } from "./SpotifyTrack";
 
 import type { SpotifyManager } from "../SpotifyManager";
 import type { Spotify } from "../spotify";
-import * as Lavalink from "@lavaclient/types";
+import type * as Lavalink from "@lavaclient/types";
 
 export class SpotifyArtist extends SpotifyItem {
     type: SpotifyItemType.Artist = SpotifyItemType.Artist;
