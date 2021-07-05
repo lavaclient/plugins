@@ -5,6 +5,7 @@ export * from "./abstract/SpotifyItem";
 
 export * from "./item/SpotifyPlaylist";
 export * from "./item/SpotifyAlbum";
+export * from "./item/SpotifyArtist";
 export * from "./item/SpotifyTrack";
 
 export * from "./SpotifyManager";
