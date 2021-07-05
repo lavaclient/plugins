@@ -22,8 +22,12 @@ export class SpotifyArtistLoader extends Loader {
      */
     async load(manager: SpotifyManager, [ , id ]: RegExpExecArray): Promise<SpotifyArtist> {
         const artist = await manager.makeRequest<Spotify.Artist>(`/artists/${id}`);
-        const topTracks = await manager.makeRequest<Spotify.Track[]>(`/artists/${id}/top-tracks?market=${manager.market}`);
-        return new SpotifyArtist(manager, artist, topTracks);
+        const { tracks } = await manager.makeRequest<TopTracks>(`/artists/${id}/top-tracks?market=${manager.market}`);
+        return new SpotifyArtist(manager, artist, tracks);
     }
 
+}
+
+interface TopTracks {
+    tracks: Spotify.Track[];
 }
