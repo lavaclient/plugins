@@ -6,4 +6,4 @@
 
 ### Classes
 
-- [SpotifyAlbum](../classes/item/spotifyalbum.spotifyalbum.md)
+- [SpotifyAlbum](../classes/item_spotifyalbum.spotifyalbum.md)

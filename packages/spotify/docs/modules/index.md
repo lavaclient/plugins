@@ -4,41 +4,96 @@
 
 ## Table of contents
 
-### Namespaces
-
-- [Spotify](index.spotify.md)
-
-### Classes
-
-- [Loader](../classes/index.loader.md)
-- [SpotifyAlbum](../classes/index.spotifyalbum.md)
-- [SpotifyItem](../classes/index.spotifyitem.md)
-- [SpotifyManager](../classes/index.spotifymanager.md)
-- [SpotifyPlaylist](../classes/index.spotifyplaylist.md)
-- [SpotifyPlugin](../classes/index.spotifyplugin.md)
-- [SpotifyTrack](../classes/index.spotifytrack.md)
-
-### Interfaces
-
-- [SpotifyManagerOptions](../interfaces/index.spotifymanageroptions.md)
-
-### Type aliases
+### References
 
 - [Item](index.md#item)
+- [Loader](index.md#loader)
+- [SearchPrefix](index.md#searchprefix)
+- [Spotify](index.md#spotify)
+- [SpotifyAlbum](index.md#spotifyalbum)
+- [SpotifyArtist](index.md#spotifyartist)
+- [SpotifyItem](index.md#spotifyitem)
 - [SpotifyItemType](index.md#spotifyitemtype)
+- [SpotifyManager](index.md#spotifymanager)
+- [SpotifyManagerOptions](index.md#spotifymanageroptions)
+- [SpotifyPlaylist](index.md#spotifyplaylist)
+- [SpotifyPlugin](index.md#spotifyplugin)
+- [SpotifyTrack](index.md#spotifytrack)
 
-## Type aliases
+## References
 
 ### Item
 
-Ƭ **Item**: [*SpotifyTrack*](../classes/item/spotifytrack.spotifytrack.md) \| [*SpotifyAlbum*](../classes/item/spotifyalbum.spotifyalbum.md) \| [*SpotifyPlaylist*](../classes/item/spotifyplaylist.spotifyplaylist.md)
+Re-exports: [Item](abstract_loader.md#item)
 
-Defined in: [abstract/Loader.ts:39](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/abstract/Loader.ts#L39)
+___
+
+### Loader
+
+Re-exports: [Loader](../classes/abstract_loader.loader.md)
+
+___
+
+### SearchPrefix
+
+Re-exports: [SearchPrefix](spotifymanager.md#searchprefix)
+
+___
+
+### Spotify
+
+Re-exports: [Spotify](spotify.spotify-1.md)
+
+___
+
+### SpotifyAlbum
+
+Re-exports: [SpotifyAlbum](../classes/item_spotifyalbum.spotifyalbum.md)
+
+___
+
+### SpotifyArtist
+
+Re-exports: [SpotifyArtist](../classes/item_spotifyartist.spotifyartist.md)
+
+___
+
+### SpotifyItem
+
+Re-exports: [SpotifyItem](../classes/abstract_spotifyitem.spotifyitem.md)
 
 ___
 
 ### SpotifyItemType
 
-Ƭ **SpotifyItemType**: *album* \| *playlist* \| *track*
+Re-exports: [SpotifyItemType](../enums/abstract_spotifyitem.spotifyitemtype.md)
 
-Defined in: [abstract/SpotifyItem.ts:28](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/abstract/SpotifyItem.ts#L28)
+___
+
+### SpotifyManager
+
+Re-exports: [SpotifyManager](../classes/spotifymanager.spotifymanager-1.md)
+
+___
+
+### SpotifyManagerOptions
+
+Re-exports: [SpotifyManagerOptions](../interfaces/spotifymanager.spotifymanageroptions.md)
+
+___
+
+### SpotifyPlaylist
+
+Re-exports: [SpotifyPlaylist](../classes/item_spotifyplaylist.spotifyplaylist.md)
+
+___
+
+### SpotifyPlugin
+
+Re-exports: [SpotifyPlugin](../classes/spotifyplugin.spotifyplugin-1.md)
+
+___
+
+### SpotifyTrack
+
+Re-exports: [SpotifyTrack](../classes/item_spotifytrack.spotifytrack.md)

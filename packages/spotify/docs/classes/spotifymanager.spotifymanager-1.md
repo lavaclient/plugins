@@ -4,10 +4,6 @@
 
 [SpotifyManager](../modules/spotifymanager.md).SpotifyManager
 
-## Hierarchy
-
-* **SpotifyManager**
-
 ## Table of contents
 
 ### Constructors
@@ -23,9 +19,13 @@
 - [autoResolveYoutubeVideos](spotifymanager.spotifymanager-1.md#autoresolveyoutubevideos)
 - [lavaclient](spotifymanager.spotifymanager-1.md#lavaclient)
 - [loaders](spotifymanager.spotifymanager-1.md#loaders)
+- [market](spotifymanager.spotifymanager-1.md#market)
 - [options](spotifymanager.spotifymanager-1.md#options)
 - [playlistLimit](spotifymanager.spotifymanager-1.md#playlistlimit)
+- [searchFormat](spotifymanager.spotifymanager-1.md#searchformat)
+- [searchPrefix](spotifymanager.spotifymanager-1.md#searchprefix)
 - [BASE\_URL](spotifymanager.spotifymanager-1.md#base_url)
+- [SOURCE\_PREFIX](spotifymanager.spotifymanager-1.md#source_prefix)
 
 ### Accessors
 
@@ -45,236 +45,342 @@
 
 ### constructor
 
-\+ **new SpotifyManager**(`lavaclient`: *Manager*, `options`: [*SpotifyManagerOptions*](../interfaces/spotifymanager.spotifymanageroptions.md)): [*SpotifyManager*](spotifymanager.spotifymanager-1.md)
+• **new SpotifyManager**(`lavaclient`, `options`)
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Description |
------- | ------ | ------ |
-`lavaclient` | *Manager* | The lavaclient manager.   |
-`options` | [*SpotifyManagerOptions*](../interfaces/spotifymanager.spotifymanageroptions.md) | The options for this spotify manager.    |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `lavaclient` | `Manager` | The lavaclient manager. |
+| `options` | [`SpotifyManagerOptions`](../interfaces/spotifymanager.spotifymanageroptions.md) | The options for this spotify manager. |
 
-**Returns:** [*SpotifyManager*](spotifymanager.spotifymanager-1.md)
+#### Defined in
 
-Defined in: [SpotifyManager.ts:60](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyManager.ts#L60)
+[SpotifyManager.ts:84](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L84)
 
 ## Properties
 
 ### #clientId
 
-• `Private` `Readonly` **#clientId**: *string*
+• `Private` `Readonly` **#clientId**: `string`
 
 The client id.
 
-Defined in: [SpotifyManager.ts:54](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyManager.ts#L54)
+#### Defined in
+
+[SpotifyManager.ts:78](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L78)
 
 ___
 
 ### #clientSecret
 
-• `Private` `Readonly` **#clientSecret**: *string*
+• `Private` `Readonly` **#clientSecret**: `string`
 
 The client secret.
 
-Defined in: [SpotifyManager.ts:60](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyManager.ts#L60)
+#### Defined in
+
+[SpotifyManager.ts:84](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L84)
 
 ___
 
 ### #token
 
-• `Private` **#token**: *null* \| *string*= null
+• `Private` **#token**: ``null`` \| `string` = `null`
 
 The token to use.
 
-Defined in: [SpotifyManager.ts:48](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyManager.ts#L48)
+#### Defined in
+
+[SpotifyManager.ts:72](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L72)
 
 ___
 
 ### albumLimit
 
-• **albumLimit**: *number*
+• **albumLimit**: `number`
 
 Total number of pages to load, each page having 50 tracks.
 
-Defined in: [SpotifyManager.ts:42](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyManager.ts#L42)
+#### Defined in
+
+[SpotifyManager.ts:50](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L50)
 
 ___
 
 ### autoResolveYoutubeVideos
 
-• **autoResolveYoutubeVideos**: *boolean*
+• **autoResolveYoutubeVideos**: `boolean`
 
 Whether to automatically resolve track youtube videos
 
-Defined in: [SpotifyManager.ts:32](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyManager.ts#L32)
+#### Defined in
+
+[SpotifyManager.ts:40](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L40)
 
 ___
 
 ### lavaclient
 
-• `Readonly` **lavaclient**: *Manager*
+• `Readonly` **lavaclient**: `Manager`
 
 The lavaclient manager.
 
-Defined in: [SpotifyManager.ts:17](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyManager.ts#L17)
+#### Defined in
+
+[SpotifyManager.ts:25](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L25)
 
 ___
 
 ### loaders
 
-• **loaders**: [*Loader*](abstract/loader.loader.md)[]
+• **loaders**: [`Loader`](abstract_loader.loader.md)[]
 
 The enabled loaders.
 
-Defined in: [SpotifyManager.ts:27](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyManager.ts#L27)
+#### Defined in
+
+[SpotifyManager.ts:35](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L35)
+
+___
+
+### market
+
+• **market**: `string`
+
+The market to use.
+
+#### Defined in
+
+[SpotifyManager.ts:66](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L66)
 
 ___
 
 ### options
 
-• `Readonly` **options**: [*SpotifyManagerOptions*](../interfaces/spotifymanager.spotifymanageroptions.md)
+• `Readonly` **options**: [`SpotifyManagerOptions`](../interfaces/spotifymanager.spotifymanageroptions.md)
 
 The options provided to the spotify manager.
 
-Defined in: [SpotifyManager.ts:22](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyManager.ts#L22)
+#### Defined in
+
+[SpotifyManager.ts:30](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L30)
 
 ___
 
 ### playlistLimit
 
-• **playlistLimit**: *number*
+• **playlistLimit**: `number`
 
 Total numbers of pages to load, each page having 100 tracks.
 
-Defined in: [SpotifyManager.ts:37](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyManager.ts#L37)
+#### Defined in
+
+[SpotifyManager.ts:45](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L45)
+
+___
+
+### searchFormat
+
+• **searchFormat**: `string`
+
+The search format used when resolving lavalink tracks.
+
+#### Defined in
+
+[SpotifyManager.ts:61](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L61)
+
+___
+
+### searchPrefix
+
+• **searchPrefix**: `string`
+
+The source used for resolving lavalink tracks.
+
+#### Defined in
+
+[SpotifyManager.ts:55](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L55)
 
 ___
 
 ### BASE\_URL
 
-▪ `Readonly` `Static` **BASE\_URL**: *https://api.spotify.com/v1*= "https://api.spotify.com/v1"
+▪ `Static` `Readonly` **BASE\_URL**: ``"https://api.spotify.com/v1"``
 
-Defined in: [SpotifyManager.ts:12](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyManager.ts#L12)
+#### Defined in
+
+[SpotifyManager.ts:15](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L15)
+
+___
+
+### SOURCE\_PREFIX
+
+▪ `Static` `Readonly` **SOURCE\_PREFIX**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `soundcloud` | `string` |
+| `youtube` | `string` |
+| `youtube music` | `string` |
+
+#### Defined in
+
+[SpotifyManager.ts:16](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L16)
 
 ## Accessors
 
 ### clientId
 
-• **clientId**(): *string*
+• `get` **clientId**(): `string`
 
 The client id provided.
 
-**Returns:** *string*
+#### Returns
 
-Defined in: [SpotifyManager.ts:91](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyManager.ts#L91)
+`string`
+
+#### Defined in
+
+[SpotifyManager.ts:110](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L110)
 
 ___
 
 ### clientSecret
 
-• **clientSecret**(): *string*
+• `get` **clientSecret**(): `string`
 
 The client secret provided.
 
-**Returns:** *string*
+#### Returns
 
-Defined in: [SpotifyManager.ts:98](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyManager.ts#L98)
+`string`
+
+#### Defined in
+
+[SpotifyManager.ts:117](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L117)
 
 ___
 
 ### encoded
 
-• `Private`**encoded**(): *string*
+• `Private` `get` **encoded**(): `string`
 
 The authorization used for tokens.
 
-**Returns:** *string*
+#### Returns
 
-Defined in: [SpotifyManager.ts:84](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyManager.ts#L84)
+`string`
+
+#### Defined in
+
+[SpotifyManager.ts:132](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L132)
 
 ___
 
 ### token
 
-• **token**(): *null* \| *string*
+• `get` **token**(): ``null`` \| `string`
 
 The current access token.
 
-**Returns:** *null* \| *string*
+#### Returns
 
-Defined in: [SpotifyManager.ts:105](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyManager.ts#L105)
+``null`` \| `string`
+
+#### Defined in
+
+[SpotifyManager.ts:124](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L124)
 
 ## Methods
 
 ### isSpotifyUrl
 
-▸ **isSpotifyUrl**(`url`: *string*): *boolean*
+▸ **isSpotifyUrl**(`url`): `boolean`
 
 Determine whether a URL is a spotify url.
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Description |
------- | ------ | ------ |
-`url` | *string* | The url to test.    |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `url` | `string` | The url to test. |
 
-**Returns:** *boolean*
+#### Returns
 
-Defined in: [SpotifyManager.ts:113](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyManager.ts#L113)
+`boolean`
+
+#### Defined in
+
+[SpotifyManager.ts:140](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L140)
 
 ___
 
 ### load
 
-▸ **load**(`url`: *string*): *Promise*<*null* \| [*SpotifyTrack*](item/spotifytrack.spotifytrack.md) \| [*SpotifyAlbum*](item/spotifyalbum.spotifyalbum.md) \| [*SpotifyPlaylist*](item/spotifyplaylist.spotifyplaylist.md)\>
+▸ **load**(`url`): `Promise`<``null`` \| [`Item`](../modules/abstract_loader.md#item)\>
 
 Loads a spotify resource with the provided url.
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Description |
------- | ------ | ------ |
-`url` | *string* | The playlist, track, or album url to load.   |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `url` | `string` | The playlist, track, or album url to load. |
 
-**Returns:** *Promise*<*null* \| [*SpotifyTrack*](item/spotifytrack.spotifytrack.md) \| [*SpotifyAlbum*](item/spotifyalbum.spotifyalbum.md) \| [*SpotifyPlaylist*](item/spotifyplaylist.spotifyplaylist.md)\>
+#### Returns
+
+`Promise`<``null`` \| [`Item`](../modules/abstract_loader.md#item)\>
 
 The loaded spotify resource.
 
-Defined in: [SpotifyManager.ts:142](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyManager.ts#L142)
+#### Defined in
+
+[SpotifyManager.ts:170](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L170)
 
 ___
 
 ### makeRequest
 
-▸ **makeRequest**<T\>(`endpoint`: *string*, `prefixBaseUrl?`: *boolean*): *Promise*<T\>
+▸ **makeRequest**<`T`\>(`endpoint`, `prefixBaseUrl?`): `Promise`<`T`\>
 
 Makes a request to the spotify api.
 
-#### Type parameters:
+#### Type parameters
 
-Name | Type | Default |
------- | ------ | ------ |
-`T` | *Record*<*string*, *any*\> | *Record*<*string*, *any*\\> |
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `Dictionary`<`any`\>`Dictionary`<`any`\> |
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Default value | Description |
------- | ------ | ------ | ------ |
-`endpoint` | *string* | - | If prefixing with the base url, the endpoint. Or full URL.   |
-`prefixBaseUrl` | *boolean* | true | Whether to prefix the endpoint with the api base url.    |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `endpoint` | `string` | `undefined` | If prefixing with the base url, the endpoint. Or full URL. |
+| `prefixBaseUrl` | `boolean` | `true` | Whether to prefix the endpoint with the api base url. |
 
-**Returns:** *Promise*<T\>
+#### Returns
 
-Defined in: [SpotifyManager.ts:123](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyManager.ts#L123)
+`Promise`<`T`\>
+
+#### Defined in
+
+[SpotifyManager.ts:150](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L150)
 
 ___
 
 ### renew
 
-▸ **renew**(): *Promise*<*void*\>
+▸ **renew**(): `Promise`<`void`\>
 
 Requests the spotify token and schedules to renew it.
 
-**Returns:** *Promise*<*void*\>
+#### Returns
 
-Defined in: [SpotifyManager.ts:179](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyManager.ts#L179)
+`Promise`<`void`\>
+
+#### Defined in
+
+[SpotifyManager.ts:205](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyManager.ts#L205)

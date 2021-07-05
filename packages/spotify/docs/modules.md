@@ -13,6 +13,8 @@
 - [index](modules/index.md)
 - [item/SpotifyAlbum](modules/item_spotifyalbum.md)
 - [item/SpotifyAlbumLoader](modules/item_spotifyalbumloader.md)
+- [item/SpotifyArtist](modules/item_spotifyartist.md)
+- [item/SpotifyArtistLoader](modules/item_spotifyartistloader.md)
 - [item/SpotifyPlaylist](modules/item_spotifyplaylist.md)
 - [item/SpotifyPlaylistLoader](modules/item_spotifyplaylistloader.md)
 - [item/SpotifyTrack](modules/item_spotifytrack.md)

@@ -6,9 +6,9 @@
 
 ## Hierarchy
 
-* *Plugin*
+- `Plugin`
 
-  ↳ **SpotifyPlugin**
+  ↳ **`SpotifyPlugin`**
 
 ## Table of contents
 
@@ -30,70 +30,90 @@
 
 ### constructor
 
-\+ **new SpotifyPlugin**(`options`: [*SpotifyManagerOptions*](../interfaces/spotifymanager.spotifymanageroptions.md)): [*SpotifyPlugin*](spotifyplugin.spotifyplugin-1.md)
+• **new SpotifyPlugin**(`options`)
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Description |
------- | ------ | ------ |
-`options` | [*SpotifyManagerOptions*](../interfaces/spotifymanager.spotifymanageroptions.md) | The spotify manager options.    |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `options` | [`SpotifyManagerOptions`](../interfaces/spotifymanager.spotifymanageroptions.md) | The spotify manager options. |
 
-**Returns:** [*SpotifyPlugin*](spotifyplugin.spotifyplugin-1.md)
+#### Overrides
 
-Defined in: [SpotifyPlugin.ts:15](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyPlugin.ts#L15)
+Plugin.constructor
+
+#### Defined in
+
+[SpotifyPlugin.ts:15](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyPlugin.ts#L15)
 
 ## Properties
 
 ### options
 
-• `Readonly` **options**: [*SpotifyManagerOptions*](../interfaces/spotifymanager.spotifymanageroptions.md)
+• `Readonly` **options**: [`SpotifyManagerOptions`](../interfaces/spotifymanager.spotifymanageroptions.md)
 
 The spotify manager options.
 
-Defined in: [SpotifyPlugin.ts:10](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyPlugin.ts#L10)
+#### Defined in
+
+[SpotifyPlugin.ts:10](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyPlugin.ts#L10)
 
 ___
 
 ### spotify
 
-• **spotify**: [*SpotifyManager*](spotifymanager.spotifymanager-1.md)
+• **spotify**: [`SpotifyManager`](spotifymanager.spotifymanager-1.md)
 
 The spotify manager.
 
-Defined in: [SpotifyPlugin.ts:15](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyPlugin.ts#L15)
+#### Defined in
+
+[SpotifyPlugin.ts:15](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyPlugin.ts#L15)
 
 ## Methods
 
 ### load
 
-▸ **load**(`manager`: *Manager*): *Promise*<*void*\>
+▸ **load**(`manager`): `Promise`<`void`\>
 
 Called whenever this plugin gets loaded.
 
-#### Parameters:
+#### Parameters
 
-Name | Type |
------- | ------ |
-`manager` | *Manager* |
+| Name | Type |
+| :------ | :------ |
+| `manager` | `Manager` |
 
-**Returns:** *Promise*<*void*\>
+#### Returns
 
-Defined in: [SpotifyPlugin.ts:37](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyPlugin.ts#L37)
+`Promise`<`void`\>
+
+#### Overrides
+
+Plugin.load
+
+#### Defined in
+
+[SpotifyPlugin.ts:37](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyPlugin.ts#L37)
 
 ___
 
 ### search
 
-▸ **search**(`url`: *string*): *Promise*<*null* \| [*SpotifyItem*](abstract/spotifyitem.spotifyitem.md)\>
+▸ **search**(`url`): `Promise`<``null`` \| [`SpotifyItem`](abstract_spotifyitem.spotifyitem.md)\>
 
 Searches spotify.
 
-#### Parameters:
+#### Parameters
 
-Name | Type | Description |
------- | ------ | ------ |
-`url` | *string* | The URL to search for.    |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `url` | `string` | The URL to search for. |
 
-**Returns:** *Promise*<*null* \| [*SpotifyItem*](abstract/spotifyitem.spotifyitem.md)\>
+#### Returns
 
-Defined in: [SpotifyPlugin.ts:30](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/SpotifyPlugin.ts#L30)
+`Promise`<``null`` \| [`SpotifyItem`](abstract_spotifyitem.spotifyitem.md)\>
+
+#### Defined in
+
+[SpotifyPlugin.ts:30](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/SpotifyPlugin.ts#L30)
