@@ -20,7 +20,7 @@ export namespace Spotify {
   }
 
   export interface ContextObject {
-    type: "artist" | "playlist" | "album" | "show" | "episode";
+    type: "artist" | "playlist" | "album" | "track" | "show" | "episode";
     href: string;
     external_urls: ExternalUrlObject;
     uri: string;

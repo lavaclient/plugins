@@ -1,8 +1,10 @@
 import type { SpotifyItemType } from "./SpotifyItem";
 import type { SpotifyManager } from "../SpotifyManager";
+
 import type { SpotifyTrack } from "../item/SpotifyTrack";
 import type { SpotifyAlbum } from "../item/SpotifyAlbum";
 import type { SpotifyPlaylist } from "../item/SpotifyPlaylist";
+import type { SpotifyArtist } from "../item/SpotifyArtist";
 
 export abstract class Loader {
   /**
@@ -36,4 +38,4 @@ export abstract class Loader {
   }
 }
 
-export type Item = SpotifyTrack | SpotifyAlbum | SpotifyPlaylist;
+export type Item = SpotifyTrack | SpotifyAlbum | SpotifyPlaylist | SpotifyArtist;
