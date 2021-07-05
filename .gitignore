@@ -29,3 +29,6 @@ yarn.lock
 # Build
 dist/
 tsconfig.tsbuildinfo
+
+# Idea Settings
+.idea/
