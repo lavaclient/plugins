@@ -9,51 +9,51 @@ import type { SpotifyTrack } from "./SpotifyTrack";
 import type { Spotify } from "../spotify";
 
 export class SpotifyPlaylistLoader extends Loader {
-  itemType: SpotifyItemType.Playlist = SpotifyItemType.Playlist;
+    itemType: SpotifyItemType.Playlist = SpotifyItemType.Playlist;
 
-  /**
-   * The regex patterns used for identifying different types of spotify urls.
-   */
-  matchers = [
-    /^(?:https?:\/\/|)?(?:www\.)?open\.spotify\.com\/playlist\/([a-zA-Z\d-_]+)/,
-    /spotify:playlist:([a-zA-Z\d-_]+)$/,
-  ];
+    /**
+     * The regex patterns used for identifying different types of spotify urls.
+     */
+    matchers = [
+        /^(?:https?:\/\/|)?(?:www\.)?open\.spotify\.com\/playlist\/([a-zA-Z\d-_]+)/,
+        /spotify:playlist:([a-zA-Z\d-_]+)$/,
+    ];
 
-  /**
-   * Loads a playlist from the spotify api.
-   *
-   * @param manager The SpotifyManager instance.
-   * @param id The playlist ID.
-   */
-  async load(manager: SpotifyManager, [ , id ]: RegExpExecArray): Promise<SpotifyPlaylist> {
-    const playlist = await manager.makeRequest<Spotify.Playlist>(`/playlists/${id}`);
-    return new SpotifyPlaylist(manager, playlist, await SpotifyPlaylistLoader.loadTracks(manager, playlist));
-  }
+    /**
+     * Loads all tracks within a playlist.
+     *
+     * @param manager The SpotifyManager instance.
+     * @param playlist The playlist object.
+     */
+    private static async loadTracks(manager: SpotifyManager, playlist: Spotify.Playlist): Promise<SpotifyTrack[]> {
+        let next = playlist.tracks.next,
+            page = 1;
 
-  /**
-   * Loads all tracks within a playlist.
-   *
-   * @param manager The SpotifyManager instance.
-   * @param playlist The playlist object.
-   */
-  private static async loadTracks(manager: SpotifyManager, playlist: Spotify.Playlist): Promise<SpotifyTrack[]> {
-    let next = playlist.tracks.next,
-      page = 1;
+        const limit = manager.albumLimit,
+            tracks = SpotifyAlbum.convertTracks(manager, playlist.tracks.items.map(i => i.track));
 
-    const limit = manager.albumLimit,
-      tracks = SpotifyAlbum.convertTracks(manager, playlist.tracks.items.map(i => i.track));
+        while (next != null && !limit ? true : page < limit) {
+            const {
+                items,
+                next: _next,
+            } = await manager.makeRequest<Spotify.PagingObject<Spotify.PlaylistTracks>>(next!, false);
 
-    while (next != null && !limit ? true : page < limit) {
-      const {
-        items,
-        next: _next,
-      } = await manager.makeRequest<Spotify.PagingObject<Spotify.PlaylistTracks>>(next!, false);
+            tracks.push(...SpotifyAlbum.convertTracks(manager, items.map(i => i.track)));
+            next = _next;
+            page++;
+        }
 
-      tracks.push(...SpotifyAlbum.convertTracks(manager, items.map(i => i.track)));
-      next = _next;
-      page++;
+        return tracks;
     }
 
-    return tracks;
-  }
+    /**
+     * Loads a playlist from the spotify api.
+     *
+     * @param manager The SpotifyManager instance.
+     * @param id The playlist ID.
+     */
+    async load(manager: SpotifyManager, [ , id ]: RegExpExecArray): Promise<SpotifyPlaylist> {
+        const playlist = await manager.makeRequest<Spotify.Playlist>(`/playlists/${id}`);
+        return new SpotifyPlaylist(manager, playlist, await SpotifyPlaylistLoader.loadTracks(manager, playlist));
+    }
 }
