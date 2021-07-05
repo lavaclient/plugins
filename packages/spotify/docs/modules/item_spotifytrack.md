@@ -6,4 +6,4 @@
 
 ### Classes
 
-- [SpotifyTrack](../classes/item/spotifytrack.spotifytrack.md)
+- [SpotifyTrack](../classes/item_spotifytrack.spotifytrack.md)

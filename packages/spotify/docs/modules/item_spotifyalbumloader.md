@@ -6,4 +6,4 @@
 
 ### Classes
 
-- [SpotifyAlbumLoader](../classes/item/spotifyalbumloader.spotifyalbumloader.md)
+- [SpotifyAlbumLoader](../classes/item_spotifyalbumloader.spotifyalbumloader.md)

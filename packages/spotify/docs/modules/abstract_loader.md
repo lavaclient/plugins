@@ -6,7 +6,7 @@
 
 ### Classes
 
-- [Loader](../classes/abstract/loader.loader.md)
+- [Loader](../classes/abstract_loader.loader.md)
 
 ### Type aliases
 
@@ -16,6 +16,8 @@
 
 ### Item
 
-Ƭ **Item**: [*SpotifyTrack*](../classes/item/spotifytrack.spotifytrack.md) \| [*SpotifyAlbum*](../classes/item/spotifyalbum.spotifyalbum.md) \| [*SpotifyPlaylist*](../classes/item/spotifyplaylist.spotifyplaylist.md)
+Ƭ **Item**: [`SpotifyTrack`](../classes/item_spotifytrack.spotifytrack.md) \| [`SpotifyAlbum`](../classes/item_spotifyalbum.spotifyalbum.md) \| [`SpotifyPlaylist`](../classes/item_spotifyplaylist.spotifyplaylist.md) \| [`SpotifyArtist`](../classes/item_spotifyartist.spotifyartist.md)
 
-Defined in: [abstract/Loader.ts:39](https://github.com/Lavaclient/plugins/blob/09b0c37/packages/spotify/src/abstract/Loader.ts#L39)
+#### Defined in
+
+[abstract/Loader.ts:41](https://github.com/Lavaclient/plugins/blob/9c6d497/packages/spotify/src/abstract/Loader.ts#L41)

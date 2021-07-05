@@ -6,4 +6,4 @@
 
 ### Classes
 
-- [SpotifyPlaylistLoader](../classes/item/spotifyplaylistloader.spotifyplaylistloader.md)
+- [SpotifyPlaylistLoader](../classes/item_spotifyplaylistloader.spotifyplaylistloader.md)
