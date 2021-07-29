@@ -1,12 +1,5 @@
 import { Player, Plugin, Structures } from "lavaclient";
 import { Queue } from "./Queue";
-
-declare module "lavaclient" {
-  interface Player {
-    queue: Queue;
-  }
-}
-
 export class QueuePlugin extends Plugin {
   /**
    * The type of queue to use.

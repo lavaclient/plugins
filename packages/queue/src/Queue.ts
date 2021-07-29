@@ -1,6 +1,7 @@
 import { EventEmitter } from "events";
-import { Player } from "lavaclient";
 import { Song } from "./Song";
+
+import type { Player } from "lavaclient";
 
 export class Queue extends EventEmitter {
   /**
@@ -129,6 +130,15 @@ export class Queue extends EventEmitter {
     }
 
     return this.length;
+  }
+  
+  public emit(event: string, ...args: any[]): boolean {
+    if (!event.startsWith("_")) {
+      const _event = event === "finished" ? "queueFinished" : event;
+      if (this.player.manager.listenerCount(_event)) this.player.manager.emit(_event, this, ...args)
+    }
+
+    return super.emit(event, ...args);
   }
 
   /**
