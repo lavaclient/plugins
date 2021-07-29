@@ -1,12 +1,24 @@
+.github/
+.idea/
+.vscode/
+
+# stuff
 src/
 node_modules/
-tests/
+test/
 docs/
-.github/
 
+# more stuff
 .gitignore
 .eslintrc
-tsconfig.json
-config.json
+
+# Configuration
 .env
-yarn-error.log
+config.json
+
+# Logs
+*.log
+
+# typescript bullshit
+*.tsbuildinfo
+tsconfig.json

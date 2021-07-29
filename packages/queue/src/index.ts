@@ -18,6 +18,11 @@ export * from "./Plugin";
 export * from "./Song";
 
 declare module "lavaclient" {
+
+  interface Player {
+    queue: Queue;
+  }
+  
   interface Manager {
     on(event: "trackStart", listener: (queue: Queue, song: Song) => void): this;
     once(event: "trackStart", listener: (queue: Queue, song: Song) => void): this;
