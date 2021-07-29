@@ -1,76 +1,76 @@
 import { decode } from "@lavalink/encoding";
 
 export class Song implements TrackInfo {
-  /**
-   * The base64 lavaplayer track.
-   */
-  public track: string;
+    /**
+     * The base64 lavaplayer track.
+     */
+    track: string;
 
-  /**
-   * The user that requested this song.
-   */
-  public requester?: string;
+    /**
+     * The user that requested this song.
+     */
+    requester?: string;
 
-  /**
-   * The length of this track.
-   */
-  public length: number;
+    /**
+     * The length of this track.
+     */
+    length: number;
 
-  /**
-   * The identifier of this track.
-   */
-  public identifier: string;
+    /**
+     * The identifier of this track.
+     */
+    identifier: string;
 
-  /**
-   * The author of this track.
-   */
-  public author: string;
+    /**
+     * The author of this track.
+     */
+    author: string;
 
-  /**
-   * Whether this track is a stream.
-   */
-  public isStream: boolean;
+    /**
+     * Whether this track is a stream.
+     */
+    isStream: boolean;
 
-  /**
-   * The position of this track
-   */
-  public position: number;
+    /**
+     * The position of this track
+     */
+    position: number;
 
-  /**
-   * The title of this track.
-   */
-  public title: string;
+    /**
+     * The title of this track.
+     */
+    title: string;
 
-  /**
-   * The uri of this track.
-   */
-  public uri: string;
+    /**
+     * The uri of this track.
+     */
+    uri: string;
 
-  /**
-   * @param track
-   * @param requester
-   */
-  public constructor(track: string, requester?: string) {
-    this.track = track;
-    this.requester = requester;
+    /**
+     * @param track
+     * @param requester
+     */
+    constructor(track: string, requester?: string) {
+        this.track = track;
+        this.requester = requester;
 
-    const decoded = decode(this.track);
-    this.length = Number(decoded.length);
-    this.identifier = decoded.identifier;
-    this.author = decoded.author;
-    this.isStream = decoded.isStream;
-    this.position = Number(decoded.position);
-    this.title = decoded.title;
-    this.uri = decoded.uri!;
-  }
+        const decoded = decode(this.track);
+        this.length = Number(decoded.length);
+        this.identifier = decoded.identifier;
+        this.author = decoded.author;
+        this.isStream = decoded.isStream;
+        this.position = Number(decoded.position);
+        this.title = decoded.title;
+        this.uri = decoded.uri!;
+    }
 }
 
 export interface TrackInfo {
-  length: number;
-  identifier: string;
-  author: string;
-  isStream: boolean;
-  position: number;
-  title: string;
-  uri: string;
+    length: number;
+    identifier: string;
+    author: string;
+    isStream: boolean;
+    position: number;
+    title: string;
+    uri: string;
 }

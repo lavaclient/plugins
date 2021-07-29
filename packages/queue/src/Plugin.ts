@@ -1,30 +1,31 @@
 import { Player, Plugin, Structures } from "lavaclient";
 import { Queue } from "./Queue";
+
 export class QueuePlugin extends Plugin {
-  /**
-   * The type of queue to use.
-   */
-  public queue: typeof Queue
+    /**
+     * The type of queue to use.
+     */
+    queue: typeof Queue;
 
-  /**
-   * @param queue
-   */
-  public constructor(queue: typeof Queue = Queue) {
-    super();
+    /**
+     * @param queue
+     */
+    constructor(queue: typeof Queue = Queue) {
+        super();
 
-    this.queue = queue;
-  }
+        this.queue = queue;
+    }
 
-  /**
-   * Initiates this plugin
-   * @since 1.0.0
-   */
-  public init(): typeof Player {
-    const queue = this.queue;
+    /**
+     * Initiates this plugin
+     * @since 1.0.0
+     */
+    init(): typeof Player {
+        const queue = this.queue;
 
-    return Structures.extend("player", (Player) =>
-      class extends Player {
-        public queue: Queue = new queue(this);
-      });
-  }
+        return Structures.extend("player", (Player) =>
+            class extends Player {
+                queue: Queue = new queue(this);
+            });
+    }
 }
