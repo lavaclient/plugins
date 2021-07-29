@@ -1,6 +1,6 @@
 {
   "name": "@lavaclient/queue",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "A lavaclient plugin that adds queue functionality",
   "main": "dist/index.js",
   "types": "index.d.ts",
