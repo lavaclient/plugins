@@ -1,53 +1,57 @@
-# Lavaclient Spotify Support
+<img src="https://i.imgur.com/LvsojLc.png" align="center">
 
 > A lavaclient plugin that makes it easy to integrate spotify searching into any project.
 
-- **✅ verified**: This is a verified Lavaclient plugin.
+- **Official Lavaclient Plugin**
+- Supports **tracks**, **playlists**, and **albums**.
+- ~~Handles RateLimiting~~ _soon_
 
-[Support](https://discord.gg/CH9ubGPMV6) &bull; [Github](https://github.com/lavaclient/plugins/tree/master/packages/spotify) &bull; [Documentation](https://github.com/lavaclient/plugins/tree/master/packages/spotify/docs)
+<h2 align="center">Installation</h2>
 
-## Installation
+##### Stable
 
-```bash
-npm install @lavaclient/spotify
+```shell
+yarn add @lavaclient/spotify # or npm install
 ```
 
-## Setup
+##### Beta
 
-> This example only works with lavaclient 3.x.x
+```shell
+yarn add @lavaclient/spotify@beta # or npm install
+```
+
+<h2 align="center">Usage</h2>
 
 ```ts
-import { Manager } from "lavaclient";
-import { SpotifyPlugin, SpotifyTrack } from "@lavaclient/spotify";
+import Spotify, { Track } from "@lavaclient/spotify";
 
-const manager = new Manager([], {
-  plugins: [
-    new SpotifyPlugin({
-      clientId: "spotify client id",
-      clientSecret: "spotify client secret",
-      autoResolveYoutubeVideos: false, // whether you want to automatically search for the youtube equivalent.
-    })
-  ],
-  ...
+Spotify.init({
+    /* information used to authenticate */
+    client: {
+        id: "your spotify client id",
+        secret: "your spotify client secret",
+    },
+    /* whether you want spotify tracks to resolve their youtube counterpart */
+    autoResolveYoutubeTracks: false,
+    /* the loaders to use. */
+    loaders: [ "track", "album" ]
 });
 
 // example: in a command or something.
-if (manager.spotify.isSpotifyUrl(query)) {
-  const item = await manager.spotify.load(query)
-  if (item instanceof SpotifyTrack) {
-    const track = await item.resolveYoutubeTrack()
-    await player.play(track)
-  }
+if (Spotify.isSpotifyUrl(query)) {
+    const item = await Spotify.load(query)
+    if (item instanceof Track) {
+        const track = await item.resolveYoutubeCounterpart();
+        await player.play(track)
+    }
 }
 ```
 
-If you need any support join <https://discord.gg/vuJxnYk>.
+##### Disclaimer
+
+Leaving the **autoResolveYoutubeVideos** option on is much slower and could get you banned from YouTube, however IP Rotation will decrease your chances dramatically.
+
 
 ---
 
-##### Disclaimer
-
-Leaving the "autoResolveYoutubeVideos" option on is much slower and could get you banned from youtube, unless you have
-IP rotation set up.
-
-melike2d &copy; 2020 - 2021
+[melike2d](https://dimensional.fun) &copy; 2018 - present

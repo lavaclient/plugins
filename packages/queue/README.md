@@ -1,33 +1,41 @@
-# Lavaclient Queue Support
+<img src="https://i.imgur.com/LvsojLc.png" align="center">
 
-> A lavaclient plugin that adds queue support to the Player class.
+> Added queue functionality for [**Lavaclient**](https://lavaclient.js.org)
 
-- **✅ Verified**: This is a verified Lavaclient plugin.
+- **Official Lavaclient Plugin**
 
-[Support](https://discord.gg/CH9ubGPMV6) &bull; [Github](https://github.com/lavaclient/plugins)
+<h2 align="center">Installation</h2>
 
-## Installation
+##### Stable
 
-```bash
-npm install lavaclient-queue
+```shell
+yarn add @lavaclient/queue # or npm install
 ```
 
-## Setup
+##### Beta
 
-> This only works with lavaclient 3.x.x
-
-```js
-import { Manager } from "lavaclient";
-import { QueuePlugin } from "@lavaclient/queue";
-
-const manager = new Manager(...);
-manager.use(new QueuePlugin());
-
-// Or
-
-const manager = new Manager(..., {
-  plugins: [new QueuePlugin()],
-  ...
-});
-
+```shell
+yarn add @lavaclient/queue@beta # or npm install
 ```
+
+<h2 align="center">Usage</h2>
+
+```ts
+import "@lavaclient/queue";
+import { Node } from "lavaclient";
+
+const node = new Node({ ... });
+const player = node.createPlayer("830616783199010857");
+
+/* search for some tracks to play. */
+const results = await node.rest.loadTracks("ytsearch:never gonna give you up");
+
+/* add it to the queue. */
+player.queue.add([ results[0] ]); // you can pass the requester in the second parameter
+if (!player.playing) {
+    player.queue.start();
+}
+```
+---
+
+[melike2d](https://dimensional.fun) &copy; 2018 - present
