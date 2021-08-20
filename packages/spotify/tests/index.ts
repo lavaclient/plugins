@@ -1,7 +1,7 @@
 import "@lavaclient/queue/register";
 import "dotenv/config";
-import { VoiceStateUpdate, VoiceServerUpdate, Node } from "lavaclient";
-import { SpotifyItemType, load } from "../dist";
+import { Node, VoiceServerUpdate, VoiceStateUpdate } from "lavaclient";
+import { load, SpotifyItemType } from "../dist";
 import { Client, Color, Embed } from "neocord";
 import { GatewayEvent, Payload } from "@neocord/gateway";
 
@@ -20,7 +20,7 @@ process.on("unhandledRejection", console.error);
 const client = new Client(),
     manager = new Node({
         sendGatewayPayload: (id, data) => client.guilds.get(id)?.shard?.send(data),
-        connection :{
+        connection: {
             password: process.env.LAVALINK_PASS!,
             port: 2333,
             host: process.env.LAVALINK_HOST!,

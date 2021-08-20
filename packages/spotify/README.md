@@ -52,7 +52,8 @@ if (node.spotify.isSpotifyUrl(query)) {
 
 ##### Disclaimer
 
-Leaving the **autoResolveYoutubeVideos** option on is much slower and could get you banned from YouTube, however IP Rotation will decrease your chances dramatically.
+Leaving the **autoResolveYoutubeVideos** option on is much slower and could get you banned from YouTube, however IP
+Rotation will decrease your chances dramatically.
 
 
 ---

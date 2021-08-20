@@ -46,7 +46,7 @@ client.on("messageCreate", async message => {
         return;
     }
 
-    const [command, ...args] = message.content.slice(1).trim().split(/\s+/g);
+    const [ command, ...args ] = message.content.slice(1).trim().split(/\s+/g);
     switch (command.toLowerCase()) {
         case "join": {
             const vc = message.member?.voice?.channel;
@@ -86,7 +86,7 @@ client.on("messageCreate", async message => {
             switch (results.loadType) {
                 case LoadType.SearchResult:
                 case LoadType.TrackLoaded: {
-                    tracks = [results.tracks[0]];
+                    tracks = [ results.tracks[0] ];
                     msg = `Queued [**${tracks[0].info.title}**](${tracks[0].info.uri})`
                     break;
                 }

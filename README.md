@@ -10,7 +10,7 @@
 
 - [**@lavaclient/spotify**](/packages/spotify)
 - [**@lavaclient/deezer**](/packages/deezer)
- 
+
 ---
 
 [melike2d](https://dimensional.fun) &copy; 2018 - present

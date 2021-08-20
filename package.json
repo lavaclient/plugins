@@ -1,13 +1,13 @@
 {
-  "name": "plugins",
-  "version": "1.0.0",
-  "license": "MIT",
-  "workspaces": [
-    "packages/"
-  ],
-  "private": true,
-  "devDependencies": {
-    "@types/node": "^16.6.1",
-    "typescript": "^4.3.5"
-  }
+    "name": "@lavaclient/plugins",
+    "version": "1.0.0",
+    "license": "MIT",
+    "workspaces": [
+        "packages/"
+    ],
+    "private": true,
+    "devDependencies": {
+        "@types/node": "^16.6.1",
+        "typescript": "^4.3.5"
+    }
 }

@@ -1,5 +1,5 @@
 import type * as Lavalink from "@lavaclient/types";
-import type { Manager, Dictionary, Plugin } from "lavaclient";
+import type { Dictionary, Manager, Plugin } from "lavaclient";
 
 declare module "lavaclient" {
     interface Manager {
@@ -223,9 +223,9 @@ export class SpotifyArtist extends SpotifyItem {
 }
 
 export class SpotifyTrack extends SpotifyItem {
-    #private;
     type: SpotifyItemType.Track;
     data: Spotify.Track;
+    #private;
 
     constructor(manager: SpotifyManager, track: Spotify.Track);
 
@@ -241,7 +241,6 @@ export class SpotifyTrack extends SpotifyItem {
 }
 
 export class SpotifyManager {
-    #private;
     static readonly BASE_URL = "https://api.spotify.com/v1";
     static readonly SOURCE_PREFIX: {
         youtube: string;
@@ -257,6 +256,7 @@ export class SpotifyManager {
     searchPrefix: string;
     searchFormat: string;
     market: string;
+    #private;
 
     constructor(lavaclient: Manager, options: SpotifyManagerOptions);
 
