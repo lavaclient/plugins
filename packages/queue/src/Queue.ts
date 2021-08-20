@@ -79,7 +79,7 @@ export class Queue extends TypedEmitter<QueueEvents> {
         const _event: keyof NodeEvents = event === "finish" ? "queueFinish" : event;
         // @ts-expect-error i dont wanna deal with this lol.
         this.player.node.emit(_event, this, ...args);
-        return this.emit(event, ...args);
+        return super.emit(event, ...args);
     }
 
     add(songs: Addable | Array<Addable>, requester?: Snowflake | DiscordResource): number {
