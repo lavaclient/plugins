@@ -1,42 +1,41 @@
 {
-  "name": "@lavaclient/queue",
-  "version": "2.0.0",
-  "description": "A lavaclient plugin that adds queue functionality",
-  "main": "dist/index.js",
-  "types": "index.d.ts",
-  "scripts": {
-    "build": "rimraf dist && tsc",
-    "lint": "eslint  --ext .ts",
-    "lint:fix": "yarn lint --fix",
-    "types": "tsc -d",
-    "types:bundle": "dts-bundle --name @lavaclient/queue --outputAsModuleFolder --main dist/index.d.ts --out ../index.d.ts --removeSource"
-
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lavaclient/plugins.git"
-  },
-  "keywords": [
-    "lavaclient",
-    "lavalink"
-  ],
-  "author": "melike2d",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/lavaclient/plugins/issues"
-  },
-  "homepage": "https://lavaclient.js.org/",
-  "devDependencies": {
-    "@dimensional-fun/common": "^1.0.3",
-    "@types/node": "^16.6.1",
-    "discord.js": "^13.1.0",
-    "dotenv": "^10.0.0",
-    "lavaclient": "^4.0.0-rc.13",
-    "rimraf": "^3.0.2",
-    "tiny-typed-emitter": "^2.1.0",
-    "typescript": "^4.3.5"
-  },
-  "dependencies": {
-    "@lavalink/encoding": "^0.1.2"
-  }
+    "name": "@lavaclient/queue",
+    "version": "2.0.0",
+    "description": "A lavaclient plugin that adds queue functionality",
+    "main": "dist/index.js",
+    "types": "index.d.ts",
+    "scripts": {
+        "build": "rimraf dist && tsc",
+        "lint": "eslint  --ext .ts",
+        "lint:fix": "yarn lint --fix",
+        "types": "tsc -d",
+        "types:bundle": "dts-bundle --name @lavaclient/queue --outputAsModuleFolder --main dist/index.d.ts --out ../index.d.ts --removeSource"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lavaclient/plugins.git"
+    },
+    "keywords": [
+        "lavaclient",
+        "lavalink"
+    ],
+    "author": "melike2d",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/lavaclient/plugins/issues"
+    },
+    "homepage": "https://lavaclient.js.org/",
+    "devDependencies": {
+        "@dimensional-fun/common": "^1.0.3",
+        "@types/node": "^16.6.1",
+        "discord.js": "^13.1.0",
+        "dotenv": "^10.0.0",
+        "lavaclient": "^4.0.0-rc.13",
+        "rimraf": "^3.0.2",
+        "tiny-typed-emitter": "^2.1.0",
+        "typescript": "^4.3.5"
+    },
+    "dependencies": {
+        "@lavalink/encoding": "^0.1.2"
+    }
 }

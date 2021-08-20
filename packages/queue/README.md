@@ -36,6 +36,7 @@ if (!player.playing) {
     player.queue.start();
 }
 ```
+
 ---
 
 [melike2d](https://dimensional.fun) &copy; 2018 - present
