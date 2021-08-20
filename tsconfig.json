@@ -1,40 +1,43 @@
 {
-  "exclude": ["**/node_modules", "**/dist"],
-  "compilerOptions": {
-    /* Basic */
-    "lib": ["ES2020", "ES2019"],
-    "target": "ES2020",
-    "module": "CommonJS",
-    "skipLibCheck": true,
+    "compilerOptions": {
+        /* Basic */
+        "lib": [
+            "ESNext"
+        ],
+        "target": "ESNext",
+        "module": "CommonJS",
+        "skipLibCheck": true,
 
-    /* Compiling */
-    "incremental": true,
-    "inlineSourceMap": true,
-    "declaration": false,
-    "allowSyntheticDefaultImports": true,
-    "removeComments": true,
+        /* Compiling */
+        "inlineSourceMap": false,
+        "declaration": false,
+        "allowJs": false,
+        "removeComments": true,
 
-    /* Strict Options */
-    "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictBindCallApply": true,
-    "strictPropertyInitialization": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "pretty": true,
-    "importsNotUsedAsValues": "error",
+        /* Strict Options */
+        "strict": true,
+        "stripInternal": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "strictBindCallApply": true,
+        "strictPropertyInitialization": true,
+        "strictFunctionTypes": true,
+        "noImplicitThis": true,
+        "alwaysStrict": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "importsNotUsedAsValues": "error",
+        "useDefineForClassFields": false,
 
-    /* Types */
-    "types": ["node"],
-    "forceConsistentCasingInFileNames": true,
+        /* Types */
+        "types": [
+            "node"
+        ],
+        "forceConsistentCasingInFileNames": true,
 
-    /* Module Resolution */
-    "resolveJsonModule": true,
-    "esModuleInterop": true
-  }
+        /* Module Resolution */
+        "resolveJsonModule": true,
+        "esModuleInterop": true
+    }
 }
