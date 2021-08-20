@@ -24,6 +24,7 @@ yarn add @lavaclient/spotify@beta # or npm install
 
 ```ts
 import { Track, load } from "@lavaclient/spotify";
+import { Node } from "lavaclient";
 
 load({
     /* information used to authenticate */
@@ -37,12 +38,14 @@ load({
     loaders: [ "track", "album" ]
 });
 
+const node = new Node({ ... });
+
 // example: in a command or something.
-if (Spotify.isSpotifyUrl(query)) {
-    const item = await Spotify.load(query)
+if (node.spotify.isSpotifyUrl(query)) {
+    const item = await node.spotify.load(query)
     if (item instanceof Track) {
-        const track = await item.resolveYoutubeCounterpart();
-        await player.play(track)
+        const track = await item.resolveYoutubeTrack();
+        await player.playTrack(track)
     }
 }
 ```

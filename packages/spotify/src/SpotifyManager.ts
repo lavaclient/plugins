@@ -143,10 +143,10 @@ export class SpotifyManager {
                 case SpotifyItemType.Album:
                 case SpotifyItemType.Artist:
                 case SpotifyItemType.Playlist:
-                    await item.resolveAllTracks();
+                    await item.resolveYoutubeTracks();
                     break;
                 case SpotifyItemType.Track:
-                    await item.resolveLavalinkTrack();
+                    await item.resolveYoutubeTrack();
                     break;
             }
         }

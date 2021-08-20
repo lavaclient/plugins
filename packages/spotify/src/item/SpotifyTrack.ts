@@ -62,9 +62,9 @@ export class SpotifyTrack extends SpotifyItem {
     }
 
     /**
-     * Resolves the lavalink track.
+     * Resolves the YouTube track that can be played.
      */
-    async resolveLavalinkTrack(): Promise<Lavalink.Track> {
+    async resolveYoutubeTrack(): Promise<Lavalink.Track> {
         if (this.#track != null) {
             return this.#track;
         }

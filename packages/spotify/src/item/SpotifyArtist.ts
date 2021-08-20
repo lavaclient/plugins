@@ -53,8 +53,8 @@ export class SpotifyArtist extends SpotifyItem {
      * Resolves every top track of this artist..
      * @returns The resolved lavalink tracks.
      */
-    async resolveAllTracks(): Promise<Lavalink.Track[]> {
-        const promises = this.topTracks.map(t => t.resolveLavalinkTrack());
+    async resolveYoutubeTracks(): Promise<Lavalink.Track[]> {
+        const promises = this.topTracks.map(t => t.resolveYoutubeTrack());
         return await Promise.all(promises);
     }
 
