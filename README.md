@@ -4,12 +4,12 @@
 
 ###### Added Functionality
 
-- [**@lavaclient/queue**](/plugins/queue)
+- [**@lavaclient/queue**](/packages/queue)
 
 ###### Search Platforms
 
-- [**@lavaclient/spotify**](/plugins/spotify)
-- [**@lavaclient/deezer**](/plugins/deezer)
+- [**@lavaclient/spotify**](/packages/spotify)
+- [**@lavaclient/deezer**](/packages/deezer)
  
 ---
 
