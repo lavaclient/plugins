@@ -70,11 +70,11 @@ export class SpotifyTrack extends SpotifyItem {
         }
 
         let query = `${this.manager.searchPrefix}`;
-        query += this.manager.searchFormat
+        query += this.manager.options.searchFormat
             .replace("{track}", this.data.name)
             .replace("{artist}", this.data.artists[0].name);
 
-        const searchResults = await this.manager.lavaclient.search(query);
+        const searchResults = await this.manager.lavaclient.rest.loadTracks(query);
         return this.#track = searchResults.tracks[0];
     }
 }

@@ -23,9 +23,9 @@ yarn add @lavaclient/spotify@beta # or npm install
 <h2 align="center">Usage</h2>
 
 ```ts
-import Spotify, { Track } from "@lavaclient/spotify";
+import { Track, load } from "@lavaclient/spotify";
 
-Spotify.init({
+load({
     /* information used to authenticate */
     client: {
         id: "your spotify client id",

@@ -1,52 +1,46 @@
-// @ts-nocheck
-
+import "@lavaclient/queue/register";
 import "dotenv/config";
-import { DiscordVoiceServer, DiscordVoiceState, Manager } from "lavaclient";
-import { SpotifyItemType, SpotifyPlugin } from "../dist";
-import { QueuePlugin, Song } from "@lavaclient/queue";
+import { VoiceStateUpdate, VoiceServerUpdate, Node } from "lavaclient";
+import { SpotifyItemType, load } from "../dist";
 import { Client, Color, Embed } from "neocord";
 import { GatewayEvent, Payload } from "@neocord/gateway";
+
+import type { Song } from "@lavaclient/queue";
+
+load({
+    client: {
+        id: process.env.SPOTIFY_CLIENT_ID!,
+        secret: process.env.SPOTIFY_CLIENT_SECRET!,
+    },
+    autoResolveYoutubeTracks: true
+});
 
 process.on("unhandledRejection", console.error);
 
 const client = new Client(),
-    manager = new Manager([
-        {
-            id: "main",
-            password: process.env.LAVALINK_PASS,
+    manager = new Node({
+        sendGatewayPayload: (id, data) => client.guilds.get(id)?.shard?.send(data),
+        connection :{
+            password: process.env.LAVALINK_PASS!,
             port: 2333,
-            host: process.env.LAVALINK_HOST,
-        },
-    ], {
-        send: (id, data) => {
-            const guild = client.guilds.get(id);
-            if (guild) {
-                guild.shard.send(data);
-            }
-        },
-        plugins: [
-            new QueuePlugin(),
-            new SpotifyPlugin({
-                clientId: process.env.SPOTIFY_CLIENT_ID,
-                clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-            }),
-        ],
+            host: process.env.LAVALINK_HOST!,
+        }
     });
 
 client.ws.on("raw", async (pk: Payload) => {
     switch (pk.t) {
         case GatewayEvent.VoiceServerUpdate:
-            await manager.serverUpdate(pk.d as DiscordVoiceServer);
+            await manager.handleVoiceUpdate(pk.d as VoiceServerUpdate);
             break;
         case GatewayEvent.VoiceStateUpdate:
-            await manager.stateUpdate(pk.d as DiscordVoiceState);
+            await manager.handleVoiceUpdate(pk.d as VoiceStateUpdate);
             break;
     }
 });
 
 client.on("ready", () => {
     console.log("ready");
-    manager.init(client.user!.id);
+    manager.connect(client.user!.id);
 });
 
 client.on("messageCreate", async message => {
@@ -66,7 +60,7 @@ client.on("messageCreate", async message => {
             }
 
             const player = manager
-                .create(message.guild!)
+                .createPlayer(message.guild!)
                 .connect(message.member.voice!.channelId);
 
             player.queue
@@ -79,7 +73,7 @@ client.on("messageCreate", async message => {
                         return b.embed(embed);
                     });
                 })
-                .on("finished", () => {
+                .on("finish", () => {
                     message.channel.send(b => {
                         const embed = new Embed()
                             .setColor(Color.Blurple)
@@ -88,7 +82,8 @@ client.on("messageCreate", async message => {
                         return b.embed(embed);
                     });
 
-                    player.destroy(true);
+                    player.disconnect()
+                    player.destroy();
                 });
 
             await message.channel.send("joined your vc!");
@@ -110,7 +105,6 @@ client.on("messageCreate", async message => {
                 switch (results.type) {
                     case SpotifyItemType.Track:
                         const track = await results.resolveLavalinkTrack();
-
                         player.queue.add(track, message.author.id);
                         await message.channel.send(b => {
                             const artist = results.artists[0],
@@ -128,15 +122,14 @@ client.on("messageCreate", async message => {
 
                         break;
                     case SpotifyItemType.Album:
-                        const albumTracks = await Promise.all(results.tracks.map(t => t.resolveLavalinkTrack()));
-
+                        const albumTracks = await results.resolveAllTracks();
                         player.queue.add(albumTracks, message.author.id);
                         await message.channel.send(b => {
                             const artist = results.artists[0];
                             const embed = new Embed()
                                 .setColor(Color.Blurple)
                                 .setDescription(`Queued album **[${results.data.name}](${results.data.external_urls.spotify})**, it has **${albumTracks.length}** tracks.`)
-                                .setThumbnail(results.artwork)
+                                .setThumbnail(results.artwork!)
                                 .setAuthor(artist.name, {
                                     url: artist.external_urls.spotify,
                                     icon: artist.images ? artist.images[0].url : client.user?.displayAvatarURL()!,
@@ -148,7 +141,6 @@ client.on("messageCreate", async message => {
                         break;
                     case SpotifyItemType.Artist:
                         const topTracks = await results.resolveAllTracks();
-
                         player.queue.add(topTracks, message.author.id);
                         await message.channel.send(b => {
                             const embed = new Embed()
@@ -161,8 +153,7 @@ client.on("messageCreate", async message => {
 
                         break;
                     case SpotifyItemType.Playlist:
-                        const playlistTracks = await Promise.all(results.tracks.map(t => t.resolveLavalinkTrack()));
-
+                        const playlistTracks = await results.resolveAllTracks();
                         player.queue.add(playlistTracks, message.author.id);
                         await message.channel.send(b => {
                             const owner = results.owner,
@@ -184,7 +175,7 @@ client.on("messageCreate", async message => {
                         break;
                 }
             } else {
-                const results = await manager.search(`${/^(https?:\/\/)/im.test(query) ? "" : "ytmsearch:"}${query}`);
+                const results = await manager.rest.loadTracks(`${/^(https?:\/\/)/im.test(query) ? "" : "ytmsearch:"}${query}`);
                 switch (results.loadType) {
                     case "PLAYLIST_LOADED":
                         player.queue.add(results.tracks, message.author.id);
@@ -200,7 +191,7 @@ client.on("messageCreate", async message => {
                     case "SEARCH_RESULT":
                     case "TRACK_LOADED":
                         const track = results.tracks[0];
-                        await player.queue.add(track);
+                        player.queue.add(track);
                         await message.channel.send(b => {
                             const embed = new Embed()
                                 .setColor(Color.Blurple)

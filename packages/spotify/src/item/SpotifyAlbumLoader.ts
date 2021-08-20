@@ -24,10 +24,10 @@ export class SpotifyAlbumLoader extends Loader {
         let next = album.tracks.next,
             page = 1;
 
-        const limit = manager.albumLimit,
+        const limit = manager.options.albumPageLimit,
             tracks = SpotifyAlbum.convertTracks(manager, album.tracks.items);
 
-        while (next != null && !limit ? true : page < limit) {
+        while (next != null && limit === -1 ? true : page < limit) {
             const {
                 items,
                 next: _next,

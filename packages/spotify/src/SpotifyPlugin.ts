@@ -1,48 +1,40 @@
-import { Manager, Plugin } from "lavaclient";
+import { Cluster, ClusterNode, Node } from "lavaclient";
 import { SpotifyManager, SpotifyManagerOptions } from "./SpotifyManager";
 
-import type { SpotifyItem } from "./abstract/SpotifyItem";
+export const _manager: unique symbol = Symbol.for("SpotifyManager");
 
-export class SpotifyPlugin extends Plugin {
-    /**
-     * The spotify manager options.
-     */
-    readonly options: SpotifyManagerOptions;
+export function load(options: SpotifyManagerOptions) {
+    Reflect.defineProperty(Node.prototype, "spotify", {
+        get(this: Node | ClusterNode) {
+            return this instanceof ClusterNode
+                ? this.cluster.spotify
+                : this[_manager] ??= new SpotifyManager(this, options);
+        }
+    });
 
-    /**
-     * The spotify manager.
-     */
-    spotify!: SpotifyManager;
+    Reflect.defineProperty(Cluster.prototype, "spotify", {
+        get(this: Cluster) {
+            return this[_manager] ??= new SpotifyManager(this, options);
+        }
+    });
+}
 
-    /**
-     * @param options The spotify manager options.
-     */
-    constructor(options: SpotifyManagerOptions) {
-        super();
+declare module "lavaclient" {
+    interface Node {
+        readonly spotify: SpotifyManager;
 
-        this.options = options;
+        /**
+         * @internal
+         */
+        [_manager]?: SpotifyManager;
     }
 
-    /**
-     * Searches spotify.
-     * @param url The URL to search for.
-     */
-    search(url: string): Promise<SpotifyItem | null> {
-        return this.spotify.load(url);
-    }
+    interface Cluster {
+        readonly spotify: SpotifyManager;
 
-    /**
-     * Called whenever this plugin gets loaded.
-     */
-    async load(manager: Manager): Promise<void> {
-        this.spotify = new SpotifyManager(manager, this.options);
-        Object.defineProperty(manager, "spotify", {
-            value: this.spotify,
-            writable: false,
-            enumerable: false,
-            configurable: false,
-        });
-
-        await this.spotify.renew();
+        /**
+         * @internal
+         */
+        [_manager]?: SpotifyManager;
     }
 }
