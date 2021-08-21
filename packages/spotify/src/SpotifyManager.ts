@@ -1,4 +1,4 @@
-import fetch from "petitio";
+import fetch from "centra";
 
 import { SpotifyItemType } from "./abstract/SpotifyItem";
 
@@ -8,26 +8,42 @@ import { SpotifyPlaylistLoader } from "./item/SpotifyPlaylistLoader";
 import { SpotifyTrackLoader } from "./item/SpotifyTrackLoader";
 import { SpotifyArtistLoader } from "./item/SpotifyArtistLoader";
 
-import type { Dictionary, Manager } from "lavaclient";
+import type { Cluster, Dictionary, Node } from "lavaclient";
 import type { Item, Loader } from "./abstract/Loader";
 
 export class SpotifyManager {
-    static readonly BASE_URL = "https://api.spotify.com/v1";
+    static readonly API_URL = "https://api.spotify.com/v1";
+
     static readonly SOURCE_PREFIX = {
-        "youtube": "ytsearch:",
+        youtube: "ytsearch:",
         "youtube music": "ytmsearch:",
-        "soundcloud": "scsearch:",
+        soundcloud: "scsearch:",
+    };
+
+    static readonly DEFAULTS: Omit<SpotifyManagerOptions, "client"> = {
+        albumPageLimit: -1,
+        playlistPageLimit: -1,
+        autoResolveYoutubeTracks: false,
+        loaders: [
+            SpotifyItemType.Album,
+            SpotifyItemType.Artist,
+            SpotifyItemType.Track,
+            SpotifyItemType.Playlist,
+        ],
+        market: "US",
+        searchFormat: "{track} {artist}",
+        searchPrefix: "youtube",
     };
 
     /**
      * The lavaclient manager.
      */
-    readonly lavaclient: Manager;
+    readonly lavaclient: Cluster | Node;
 
     /**
      * The options provided to the spotify manager.
      */
-    readonly options: SpotifyManagerOptions;
+    readonly options: Required<SpotifyManagerOptions>;
 
     /**
      * The enabled loaders.
@@ -35,35 +51,9 @@ export class SpotifyManager {
     loaders: Loader[];
 
     /**
-     * Whether to automatically resolve track youtube videos
-     */
-    autoResolveYoutubeVideos: boolean;
-
-    /**
-     * Total numbers of pages to load, each page having 100 tracks.
-     */
-    playlistLimit: number;
-
-    /**
-     * Total number of pages to load, each page having 50 tracks.
-     */
-    albumLimit: number;
-
-    /**
      * The source used for resolving lavalink tracks.
      */
     searchPrefix: string;
-
-    /**
-     * The search format used when resolving lavalink tracks.
-     * @type {string}
-     */
-    searchFormat: string;
-
-    /**
-     * The market to use.
-     */
-    market: string;
 
     /**
      * The token to use.
@@ -75,47 +65,29 @@ export class SpotifyManager {
      * The client id.
      * @private
      */
-    readonly #clientId: string;
-
-    /**
-     * The client secret.
-     * @private
-     */
-    readonly #clientSecret: string;
+    readonly #client: SpotifyClientOptions;
 
     /**
      * @param lavaclient The lavaclient manager.
      * @param options The options for this spotify manager.
      */
-    public constructor(lavaclient: Manager, options: SpotifyManagerOptions) {
+    constructor(lavaclient: Node | Cluster, options: SpotifyManagerOptions) {
         this.lavaclient = lavaclient;
-        this.options = options;
+        this.options = Object.assign(
+            SpotifyManager.DEFAULTS,
+            options
+        ) as Required<SpotifyManagerOptions>;
 
-        this.autoResolveYoutubeVideos = options.autoResolveYoutubeVideos ?? true;
-        this.albumLimit = options.albumLimit ?? 1;
-        this.playlistLimit = options.playlistLimit ?? 1;
-        this.loaders = [ new SpotifyAlbumLoader(), new SpotifyPlaylistLoader(), new SpotifyTrackLoader(), new SpotifyArtistLoader() ]
-            .filter(l => !options.disabledItems?.includes(l.itemType) ?? true);
-        this.searchPrefix = SpotifyManager.SOURCE_PREFIX[options.searchPrefix ?? "youtube"];
-        this.searchFormat = options.searchFormat ?? "{artist} {track}";
-        this.market = options.market?.toUpperCase() ?? "US";
+        this.loaders = [
+            new SpotifyAlbumLoader(),
+            new SpotifyPlaylistLoader(),
+            new SpotifyTrackLoader(),
+            new SpotifyArtistLoader(),
+        ].filter(l => this.options.loaders.includes(l.itemType) ?? false);
 
-        this.#clientId = options.clientId;
-        this.#clientSecret = options.clientSecret;
-    }
-
-    /**
-     * The client id provided.
-     */
-    get clientId(): string {
-        return this.#clientId;
-    }
-
-    /**
-     * The client secret provided.
-     */
-    get clientSecret(): string {
-        return this.#clientSecret;
+        this.searchPrefix =
+            SpotifyManager.SOURCE_PREFIX[options.searchPrefix ?? "youtube"];
+        this.#client = options.client;
     }
 
     /**
@@ -130,7 +102,9 @@ export class SpotifyManager {
      * @private
      */
     private get encoded(): string {
-        return Buffer.from(`${this.#clientId}:${this.#clientSecret}`).toString("base64");
+        return Buffer.from(
+            `${this.#client.id}:${this.#client.secret}`
+        ).toString("base64");
     }
 
     /**
@@ -138,7 +112,10 @@ export class SpotifyManager {
      * @param url The url to test.
      */
     isSpotifyUrl(url: string): boolean {
-        const matchers = this.loaders.reduce((rs, loader) => [ ...rs, ...loader.matchers ], [] as RegExp[]);
+        const matchers = this.loaders.reduce(
+            (rs, loader) => [...rs, ...loader.matchers],
+            [] as RegExp[]
+        );
         return matchers.some(r => r.test(url));
     }
 
@@ -147,18 +124,20 @@ export class SpotifyManager {
      * @param endpoint If prefixing with the base url, the endpoint. Or full URL.
      * @param prefixBaseUrl Whether to prefix the endpoint with the api base url.
      */
-    async makeRequest<T extends Dictionary = Dictionary>(endpoint: string, prefixBaseUrl = true): Promise<T> {
+    async makeRequest<T extends Dictionary = Dictionary>(
+        endpoint: string,
+        prefixBaseUrl = true
+    ): Promise<T> {
         if (!this.#token) {
             await this.renew();
         }
 
-        const headers = {
-            authorization: `Bearer ${this.token}`,
-        };
-
-        return fetch(`${prefixBaseUrl ? SpotifyManager.BASE_URL : ""}${endpoint}`)
-            .header(headers)
-            .json();
+        return fetch(
+            `${prefixBaseUrl ? SpotifyManager.API_URL : ""}${endpoint}`
+        )
+            .header("Authorization", `Bearer ${this.token}`)
+            .send()
+            .then(r => r.json());
     }
 
     /**
@@ -172,7 +151,9 @@ export class SpotifyManager {
             return null;
         }
 
-        const loader = this.loaders.find(l => l.matchers.some(r => r.test(url)));
+        const loader = this.loaders.find(l =>
+            l.matchers.some(r => r.test(url))
+        );
         if (!loader) {
             return null;
         }
@@ -182,15 +163,15 @@ export class SpotifyManager {
             return null;
         }
 
-        if (this.autoResolveYoutubeVideos) {
+        if (this.options.autoResolveYoutubeTracks) {
             switch (item.type) {
                 case SpotifyItemType.Album:
                 case SpotifyItemType.Artist:
                 case SpotifyItemType.Playlist:
-                    await item.resolveAllTracks();
+                    await item.resolveYoutubeTracks();
                     break;
                 case SpotifyItemType.Track:
-                    await item.resolveLavalinkTrack();
+                    await item.resolveYoutubeTrack();
                     break;
             }
         }
@@ -203,12 +184,16 @@ export class SpotifyManager {
      * @returns {Promise<void>}
      */
     async renew() {
-        const {
-            expires_in,
-            access_token,
-        } = await fetch("https://accounts.spotify.com/api/token?grant_type=client_credentials", "POST")
-            .header({ authorization: `Basic ${this.encoded}`, "content-type": "application/x-www-form-urlencoded" })
-            .json();
+        const { expires_in, access_token } = await fetch(
+            "https://accounts.spotify.com/api/token?grant_type=client_credentials",
+            "POST"
+        )
+            .header({
+                authorization: `Basic ${this.encoded}`,
+                "content-type": "application/x-www-form-urlencoded",
+            })
+            .send()
+            .then(r => r.json());
 
         if (!access_token) {
             throw new Error("Invalid spotify client id.");
@@ -217,59 +202,29 @@ export class SpotifyManager {
         this.#token = access_token;
         setTimeout(this.renew.bind(this), expires_in * 1000);
     }
-
 }
 
-export type SearchPrefix = "youtube" | "youtube music" | "soundcloud"
+export type SearchPrefix = "youtube" | "youtube music" | "soundcloud";
 
-export interface SpotifyManagerOptions {
-    /**
-     * Total numbers of pages to load, each page having 100 tracks.
-     */
-    playlistLimit?: number;
-
-    /**
-     * Total number of pages to load, each page having 50 tracks.
-     */
-    albumLimit?: number;
-
-    /**
-     * The types of spotify items that will be loaded.
-     */
-    disabledItems?: SpotifyItemType[];
-
+export interface SpotifyClientOptions {
     /**
      * The client id to use for authorization.
      */
-    clientId: string;
+    id: string;
 
     /**
      * The client secret to use for authorization.
      */
-    clientSecret: string;
+    secret: string;
+}
 
-    /**
-     * Whether to automatically fetch the youtube video for spotify tracks.
-     */
-    autoResolveYoutubeVideos?: boolean;
-
-    /**
-     * The search prefix used for resolving lavalink tracks, defaults to "youtube".
-     */
+export interface SpotifyManagerOptions {
+    playlistPageLimit?: number;
+    albumPageLimit?: number;
+    client: SpotifyClientOptions;
+    loaders?: SpotifyItemType[];
+    autoResolveYoutubeTracks?: boolean;
     searchPrefix?: SearchPrefix;
-
-    /**
-     * The search format used when resolving lavalink tracks, defaults to "{artist} {track name}"
-     * Available keys:
-     * - {artist} Artist Name
-     * - {track} Track Name
-     */
     searchFormat?: string;
-
-    /**
-     * The market to use, must be a ISO 3166-1 alpha-2 country code.
-     *
-     * @see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
-     */
     market?: string;
 }

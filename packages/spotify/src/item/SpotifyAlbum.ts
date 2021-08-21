@@ -24,7 +24,11 @@ export class SpotifyAlbum extends SpotifyItem {
      * @param album
      * @param tracks
      */
-    constructor(manager: SpotifyManager, album: Spotify.Album, tracks: Array<SpotifyTrack>) {
+    constructor(
+        manager: SpotifyManager,
+        album: Spotify.Album,
+        tracks: Array<SpotifyTrack>
+    ) {
         super(manager);
 
         this.data = album;
@@ -66,7 +70,10 @@ export class SpotifyAlbum extends SpotifyItem {
      * @param manager
      * @param tracks
      */
-    static convertTracks(manager: SpotifyManager, tracks: Spotify.Track[]): SpotifyTrack[] {
+    static convertTracks(
+        manager: SpotifyManager,
+        tracks: Spotify.Track[]
+    ): SpotifyTrack[] {
         return tracks.map(t => new SpotifyTrack(manager, t));
     }
 
@@ -74,9 +81,8 @@ export class SpotifyAlbum extends SpotifyItem {
      * Resolves every track in this album.
      * @returns The resolved lavalink tracks.
      */
-    async resolveAllTracks(): Promise<Lavalink.Track[]> {
-        const promises = this.tracks.map(t => t.resolveLavalinkTrack());
+    async resolveYoutubeTracks(): Promise<Lavalink.Track[]> {
+        const promises = this.tracks.map(t => t.resolveYoutubeTrack());
         return await Promise.all(promises);
     }
-
 }

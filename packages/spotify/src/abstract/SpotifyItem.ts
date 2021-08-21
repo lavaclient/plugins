@@ -22,12 +22,11 @@ export abstract class SpotifyItem {
             writable: false,
         });
     }
-
 }
 
 export enum SpotifyItemType {
     Artist,
     Playlist,
     Track,
-    Album
+    Album,
 }

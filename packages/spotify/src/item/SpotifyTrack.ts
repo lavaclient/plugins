@@ -62,19 +62,21 @@ export class SpotifyTrack extends SpotifyItem {
     }
 
     /**
-     * Resolves the lavalink track.
+     * Resolves the YouTube track that can be played.
      */
-    async resolveLavalinkTrack(): Promise<Lavalink.Track> {
+    async resolveYoutubeTrack(): Promise<Lavalink.Track> {
         if (this.#track != null) {
             return this.#track;
         }
 
         let query = `${this.manager.searchPrefix}`;
-        query += this.manager.searchFormat
+        query += this.manager.options.searchFormat
             .replace("{track}", this.data.name)
             .replace("{artist}", this.data.artists[0].name);
 
-        const searchResults = await this.manager.lavaclient.search(query);
-        return this.#track = searchResults.tracks[0];
+        const searchResults = await this.manager.lavaclient.rest.loadTracks(
+            query
+        );
+        return (this.#track = searchResults.tracks[0]);
     }
 }

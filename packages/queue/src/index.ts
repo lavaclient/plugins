@@ -1,39 +1,30 @@
+import type { _queue } from "./Plugin";
 import type { Queue } from "./Queue";
 import type { Song } from "./Song";
 
-function isInstalled(id: string): boolean {
-    try {
-        require(id);
-        return true;
-    } catch (error) {
-        return false;
-    }
-}
-
-if (!isInstalled("lavaclient")) {
-    throw new Error("Please install Lavaclient.");
-}
-
 export * from "./Queue";
-export * from "./Plugin";
 export * from "./Song";
+export * from "./Plugin";
 
 declare module "lavaclient" {
     interface Player {
-        queue: Queue;
+        readonly queue: Queue;
+
+        /** @internal */
+        [_queue]: Queue;
     }
 
-    interface Manager {
-        on(event: "trackStart", listener: (queue: Queue, song: Song) => void): this;
+    interface ClusterEvents {
+        nodeQueueCreate: (node: Node, queue: Queue) => void;
+        nodeQueueFinish: (node: Node, queue: Queue) => void;
+        nodeTrackStart: (node: Node, queue: Queue, song: Song) => void;
+        nodeTrackEnd: (node: Node, queue: Queue, song: Song) => void;
+    }
 
-        once(event: "trackStart", listener: (queue: Queue, song: Song) => void): this;
-
-        on(event: "trackEnd", listener: (queue: Queue, song: Song) => void): this;
-
-        once(event: "trackEnd", listener: (queue: Queue, song: Song) => void): this;
-
-        on(event: "queueFinished", listener: (queue: Queue) => void): this;
-
-        once(event: "queueFinished", listener: (queue: Queue) => void): this;
+    interface NodeEvents {
+        queueCreate: (queue: Queue) => void;
+        queueFinish: (queue: Queue) => void;
+        trackStart: (queue: Queue, song: Song) => void;
+        trackEnd: (queue: Queue, song: Song) => void;
     }
 }

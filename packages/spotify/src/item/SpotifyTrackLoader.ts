@@ -23,7 +23,10 @@ export class SpotifyTrackLoader extends Loader {
      * @param id The track ID.
      * @returns The fetched track.
      */
-    async load(manager: SpotifyManager, [ , id ]: RegExpExecArray): Promise<SpotifyTrack> {
+    async load(
+        manager: SpotifyManager,
+        [, id]: RegExpExecArray
+    ): Promise<SpotifyTrack> {
         const track = await manager.makeRequest<Spotify.Track>(`/tracks/${id}`);
         return new SpotifyTrack(manager, track);
     }

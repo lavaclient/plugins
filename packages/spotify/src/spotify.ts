@@ -56,7 +56,7 @@ export namespace Spotify {
         copyrights: CopyrightObject[];
         external_ids: ExternalIdObject;
         genres: string[];
-        label: string,
+        label: string;
         popularity: number;
         tracks: PagingObject<Track>;
     }

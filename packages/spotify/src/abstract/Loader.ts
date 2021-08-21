@@ -21,7 +21,10 @@ export abstract class Loader {
      * Used for loading spotify items.
      * @returns A spotify item (album, playlist, or track)
      */
-    abstract load(manager: SpotifyManager, execArray: RegExpExecArray): Promise<Item>
+    abstract load(
+        manager: SpotifyManager,
+        execArray: RegExpExecArray
+    ): Promise<Item>;
 
     /**
      * Used for finding this loader.
@@ -38,4 +41,8 @@ export abstract class Loader {
     }
 }
 
-export type Item = SpotifyTrack | SpotifyAlbum | SpotifyPlaylist | SpotifyArtist;
+export type Item =
+    | SpotifyTrack
+    | SpotifyAlbum
+    | SpotifyPlaylist
+    | SpotifyArtist;
