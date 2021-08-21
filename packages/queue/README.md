@@ -21,7 +21,7 @@ yarn add @lavaclient/queue@beta # or npm install
 <h2 align="center">Usage</h2>
 
 ```ts
-import "@lavaclient/queue";
+import "@lavaclient/queue/register";
 import { Node } from "lavaclient";
 
 const node = new Node({ ... });
