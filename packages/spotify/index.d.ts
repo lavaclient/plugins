@@ -1,11 +1,5 @@
 import type * as Lavalink from "@lavaclient/types";
-import type { Dictionary, Manager, Plugin } from "lavaclient";
-
-declare module "lavaclient" {
-    interface Manager {
-        readonly spotify: SpotifyManager;
-    }
-}
+import type { Cluster, Dictionary, Node } from "lavaclient";
 
 export namespace Spotify {
     interface PagingObject<T> {
@@ -17,39 +11,32 @@ export namespace Spotify {
         previous: string;
         total: number;
     }
-
     interface ExternalIdObject {
         isrc?: string;
         ean?: string;
         upc?: string;
     }
-
     interface ExternalUrlObject {
         spotify: string;
     }
-
     interface ContextObject {
         type: "artist" | "playlist" | "album" | "track" | "show" | "episode";
         href: string;
         external_urls: ExternalUrlObject;
         uri: string;
     }
-
     interface ImageObject {
         height?: number;
         url: string;
         width?: number;
     }
-
     interface FollowersObject {
         href: null;
         total: number;
     }
-
     interface RestrictionsObject {
         reason: string;
     }
-
     interface Album extends ContextObject {
         album_group?: "album" | "single" | "compilation" | "appears_on";
         album_type: "album" | "single" | "compilation";
@@ -69,12 +56,10 @@ export namespace Spotify {
         popularity: number;
         tracks: PagingObject<Track>;
     }
-
     interface CopyrightObject {
         text: string;
         type: "C" | "P";
     }
-
     interface Artist extends ContextObject {
         name: string;
         id: string;
@@ -84,7 +69,6 @@ export namespace Spotify {
         images: ImageObject[];
         popularity: number;
     }
-
     interface Playlist extends ContextObject {
         collaborative: boolean;
         description: string | null;
@@ -98,14 +82,12 @@ export namespace Spotify {
         followers: FollowersObject;
         tracks: PagingObject<PlaylistTracks>;
     }
-
     interface PlaylistTracks {
         added_at: string;
         added_by: User;
         is_local: boolean;
         track: Track;
     }
-
     interface User {
         display_name?: string;
         external_urls: ExternalUrlObject;
@@ -116,7 +98,6 @@ export namespace Spotify {
         type: "user";
         uri: string;
     }
-
     interface Track {
         artists: Artist[];
         available_markets?: string[];
@@ -139,7 +120,6 @@ export namespace Spotify {
         popularity: number;
         is_local?: boolean;
     }
-
     interface TrackLinkObject {
         external_urls: ExternalUrlObject;
         href: string;
@@ -152,175 +132,111 @@ export namespace Spotify {
 export abstract class Loader {
     abstract itemType: SpotifyItemType;
     abstract matchers: RegExp[];
-
-    abstract load(
-        manager: SpotifyManager,
-        execArray: RegExpExecArray
-    ): Promise<Item>;
-
+    abstract load(manager: SpotifyManager, execArray: RegExpExecArray): Promise<Item>;
     match(identifier: string): RegExpExecArray | null;
 }
-
-export type Item =
-    | SpotifyTrack
-    | SpotifyAlbum
-    | SpotifyPlaylist
-    | SpotifyArtist;
+export type Item = SpotifyTrack | SpotifyAlbum | SpotifyPlaylist | SpotifyArtist;
 
 export abstract class SpotifyItem {
     readonly manager: SpotifyManager;
     abstract type: SpotifyItemType;
-
     protected constructor(manager: SpotifyManager);
 }
-
 export enum SpotifyItemType {
     Artist = 0,
     Playlist = 1,
     Track = 2,
-    Album = 3,
+    Album = 3
 }
 
 export class SpotifyPlaylist extends SpotifyItem {
     readonly type: SpotifyItemType.Playlist;
     readonly data: Spotify.Playlist;
     readonly tracks: SpotifyTrack[];
-
-    constructor(
-        manager: SpotifyManager,
-        album: Spotify.Playlist,
-        tracks: Array<SpotifyTrack>
-    );
-
+    constructor(manager: SpotifyManager, album: Spotify.Playlist, tracks: Array<SpotifyTrack>);
     get name(): string;
-
     get owner(): Spotify.User;
-
     get artwork(): string;
-
-    resolveAllTracks(): Promise<Lavalink.Track[]>;
+    resolveYoutubeTracks(): Promise<Lavalink.Track[]>;
 }
 
 export class SpotifyAlbum extends SpotifyItem {
     readonly type: SpotifyItemType.Album;
     data: Spotify.Album;
     readonly tracks: SpotifyTrack[];
-
-    constructor(
-        manager: SpotifyManager,
-        album: Spotify.Album,
-        tracks: Array<SpotifyTrack>
-    );
-
+    constructor(manager: SpotifyManager, album: Spotify.Album, tracks: Array<SpotifyTrack>);
     get name(): string;
-
     get artists(): Spotify.Artist[];
-
     get artwork(): string | null;
-
-    static convertTracks(
-        manager: SpotifyManager,
-        tracks: Spotify.Track[]
-    ): SpotifyTrack[];
-
-    resolveAllTracks(): Promise<Lavalink.Track[]>;
+    static convertTracks(manager: SpotifyManager, tracks: Spotify.Track[]): SpotifyTrack[];
+    resolveYoutubeTracks(): Promise<Lavalink.Track[]>;
 }
 
 export class SpotifyArtist extends SpotifyItem {
     type: SpotifyItemType.Artist;
     readonly data: Spotify.Artist;
     readonly topTracks: SpotifyTrack[];
-
-    constructor(
-        manager: SpotifyManager,
-        data: Spotify.Artist,
-        topTracks: Spotify.Track[]
-    );
-
+    constructor(manager: SpotifyManager, data: Spotify.Artist, topTracks: Spotify.Track[]);
     get name(): string;
-
     get artwork(): string;
-
-    resolveAllTracks(): Promise<Lavalink.Track[]>;
+    resolveYoutubeTracks(): Promise<Lavalink.Track[]>;
 }
 
 export class SpotifyTrack extends SpotifyItem {
+    #private;
     type: SpotifyItemType.Track;
     data: Spotify.Track;
-    #private;
-
     constructor(manager: SpotifyManager, track: Spotify.Track);
-
     get name(): string;
-
     get artists(): Spotify.Artist[];
-
     get album(): Spotify.Album;
-
     get artwork(): string;
-
-    resolveLavalinkTrack(): Promise<Lavalink.Track>;
+    resolveYoutubeTrack(): Promise<Lavalink.Track>;
 }
 
 export class SpotifyManager {
-    static readonly BASE_URL = "https://api.spotify.com/v1";
+    #private;
+    static readonly API_URL = "https://api.spotify.com/v1";
     static readonly SOURCE_PREFIX: {
         youtube: string;
         "youtube music": string;
         soundcloud: string;
     };
-    readonly lavaclient: Manager;
-    readonly options: SpotifyManagerOptions;
+    static readonly DEFAULTS: Omit<SpotifyManagerOptions, "client">;
+    readonly lavaclient: Cluster | Node;
+    readonly options: Required<SpotifyManagerOptions>;
     loaders: Loader[];
-    autoResolveYoutubeVideos: boolean;
-    playlistLimit: number;
-    albumLimit: number;
     searchPrefix: string;
-    searchFormat: string;
-    market: string;
-    #private;
-
-    constructor(lavaclient: Manager, options: SpotifyManagerOptions);
-
-    get clientId(): string;
-
-    get clientSecret(): string;
-
+    constructor(lavaclient: Node | Cluster, options: SpotifyManagerOptions);
     get token(): string | null;
-
     isSpotifyUrl(url: string): boolean;
-
-    makeRequest<T extends Dictionary = Dictionary>(
-        endpoint: string,
-        prefixBaseUrl?: boolean
-    ): Promise<T>;
-
+    makeRequest<T extends Dictionary = Dictionary>(endpoint: string, prefixBaseUrl?: boolean): Promise<T>;
     load(url: string): Promise<Item | null>;
-
     renew(): Promise<void>;
 }
-
 export type SearchPrefix = "youtube" | "youtube music" | "soundcloud";
-
+export interface SpotifyClientOptions {
+    id: string;
+    secret: string;
+}
 export interface SpotifyManagerOptions {
-    playlistLimit?: number;
-    albumLimit?: number;
-    disabledItems?: SpotifyItemType[];
-    clientId: string;
-    clientSecret: string;
-    autoResolveYoutubeVideos?: boolean;
+    playlistPageLimit?: number;
+    albumPageLimit?: number;
+    client: SpotifyClientOptions;
+    loaders?: SpotifyItemType[];
+    autoResolveYoutubeTracks?: boolean;
     searchPrefix?: SearchPrefix;
     searchFormat?: string;
     market?: string;
 }
 
-export class SpotifyPlugin extends Plugin {
-    readonly options: SpotifyManagerOptions;
-    spotify: SpotifyManager;
-
-    constructor(options: SpotifyManagerOptions);
-
-    search(url: string): Promise<SpotifyItem | null>;
-
-    load(manager: Manager): Promise<void>;
+export function load(options: SpotifyManagerOptions): void;
+declare module "lavaclient" {
+    interface Node {
+        readonly spotify: SpotifyManager;
+    }
+    interface Cluster {
+        readonly spotify: SpotifyManager;
+    }
 }
+

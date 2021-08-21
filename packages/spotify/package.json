@@ -1,6 +1,6 @@
 {
     "name": "@lavaclient/spotify",
-    "version": "2.0.1",
+    "version": "3.0.0-rc.1",
     "description": "A lavaclient plugin used for easy spotify integration.",
     "main": "dist/index.js",
     "types": "index.d.ts",
@@ -9,7 +9,7 @@
         "lint": "eslint  --ext .ts",
         "lint:fix": "yarn lint --fix",
         "types": "tsc -d",
-        "types:bundle": "dts-bundle --name @lavaclient/queue --outputAsModuleFolder --main dist/index.d.ts --out ../index.d.ts --removeSource"
+        "types:bundle": "dts-bundle --name @lavaclient/spotify --outputAsModuleFolder --main dist/index.d.ts --out ../index.d.ts --removeSource"
     },
     "repository": {
         "type": "git",
