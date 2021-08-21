@@ -1,6 +1,6 @@
 {
     "name": "@lavaclient/spotify",
-    "version": "3.0.0-rc.1",
+    "version": "3.0.0",
     "description": "A lavaclient plugin used for easy spotify integration.",
     "main": "dist/index.js",
     "types": "index.d.ts",
@@ -32,7 +32,7 @@
         "@types/node-fetch": "^2.5.7",
         "centra": "^2.5.0",
         "dotenv": "^10.0.0",
-        "lavaclient": "^4.0.0-rc.13",
+        "lavaclient": "^4.0.1",
         "neocord": "^0.0.0-alpha.7",
         "rimraf": "^3.0.2",
         "typedoc": "^0.21.2",
