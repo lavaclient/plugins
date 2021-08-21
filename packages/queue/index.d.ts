@@ -27,7 +27,7 @@ export function load(Queue?: typeof BaseQueue): void;
 export enum LoopType {
     None = 0,
     Queue = 1,
-    Song = 2
+    Song = 2,
 }
 
 export class Queue extends TypedEmitter<QueueEvents> {
@@ -46,9 +46,15 @@ export class Queue extends TypedEmitter<QueueEvents> {
 
     next(): Promise<boolean>;
 
-    emit<U extends keyof QueueEvents>(event: U, ...args: Parameters<QueueEvents[U]>): boolean;
+    emit<U extends keyof QueueEvents>(
+        event: U,
+        ...args: Parameters<QueueEvents[U]>
+    ): boolean;
 
-    add(songs: Addable | Array<Addable>, requester?: Snowflake | DiscordResource): number;
+    add(
+        songs: Addable | Array<Addable>,
+        requester?: Snowflake | DiscordResource
+    ): number;
 
     setLoop(type: LoopType, max?: number): Queue;
 
@@ -86,4 +92,3 @@ export class Song implements TrackInfo {
 
     constructor(track: string | Track, requester?: string);
 }
-

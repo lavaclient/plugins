@@ -1,10 +1,18 @@
 import { Song } from "./Song";
-import { DiscordResource, getId, NodeEvents, Player, Snowflake } from "lavaclient";
+import {
+    DiscordResource,
+    getId,
+    NodeEvents,
+    Player,
+    Snowflake,
+} from "lavaclient";
 import { mayStartNext, Track } from "@lavaclient/types";
 import { TypedEmitter } from "tiny-typed-emitter";
 
 export enum LoopType {
-    None, Queue, Song
+    None,
+    Queue,
+    Song,
 }
 
 export class Queue extends TypedEmitter<QueueEvents> {
@@ -20,10 +28,13 @@ export class Queue extends TypedEmitter<QueueEvents> {
         player.on("trackStart", () => {
             if (!this.current) {
                 /* shouldn't really happen but oh well. */
-                return
+                return;
             }
 
-            if (this.loop.type === LoopType.Song && this.current === this.last) {
+            if (
+                this.loop.type === LoopType.Song &&
+                this.current === this.last
+            ) {
                 this.loop.current++;
             }
 
@@ -41,7 +52,7 @@ export class Queue extends TypedEmitter<QueueEvents> {
                     return this.player.play(this.current!, {});
                 case LoopType.Queue:
                     this.previous.push(this.current!);
-                    break
+                    break;
             }
 
             if (!this.tracks.length) {
@@ -75,19 +86,29 @@ export class Queue extends TypedEmitter<QueueEvents> {
         return true;
     }
 
-    emit<U extends keyof QueueEvents>(event: U, ...args: Parameters<QueueEvents[U]>): boolean {
-        const _event: keyof NodeEvents = event === "finish" ? "queueFinish" : event;
+    emit<U extends keyof QueueEvents>(
+        event: U,
+        ...args: Parameters<QueueEvents[U]>
+    ): boolean {
+        const _event: keyof NodeEvents =
+            event === "finish" ? "queueFinish" : event;
         // @ts-expect-error i dont wanna deal with this lol.
         this.player.node.emit(_event, this, ...args);
         return super.emit(event, ...args);
     }
 
-    add(songs: Addable | Array<Addable>, requester?: Snowflake | DiscordResource): number {
+    add(
+        songs: Addable | Array<Addable>,
+        requester?: Snowflake | DiscordResource
+    ): number {
         const requesterId = requester && getId(requester),
-            toAdd = Array.isArray(songs) ? songs : [ songs ];
+            toAdd = Array.isArray(songs) ? songs : [songs];
 
-        this.tracks.push(...toAdd
-            .map(song => song instanceof Song ? song : new Song(song, requesterId)));
+        this.tracks.push(
+            ...toAdd.map(song =>
+                song instanceof Song ? song : new Song(song, requesterId)
+            )
+        );
 
         return this.tracks.length;
     }
@@ -106,7 +127,7 @@ export class Queue extends TypedEmitter<QueueEvents> {
     shuffle(): void {
         for (let i = this.tracks.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [ this.tracks[i], this.tracks[j] ] = [ this.tracks[j], this.tracks[i] ];
+            [this.tracks[i], this.tracks[j]] = [this.tracks[j], this.tracks[i]];
         }
     }
 }

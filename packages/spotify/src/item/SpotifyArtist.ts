@@ -23,11 +23,17 @@ export class SpotifyArtist extends SpotifyItem {
      * @param data The data for this artist.
      * @param topTracks The top tracks for this artist.
      */
-    constructor(manager: SpotifyManager, data: Spotify.Artist, topTracks: Spotify.Track[]) {
+    constructor(
+        manager: SpotifyManager,
+        data: Spotify.Artist,
+        topTracks: Spotify.Track[]
+    ) {
         super(manager);
 
         this.data = data;
-        this.topTracks = topTracks.map(track => new SpotifyTrack(manager, track));
+        this.topTracks = topTracks.map(
+            track => new SpotifyTrack(manager, track)
+        );
     }
 
     /**
@@ -57,5 +63,4 @@ export class SpotifyArtist extends SpotifyItem {
         const promises = this.topTracks.map(t => t.resolveYoutubeTrack());
         return await Promise.all(promises);
     }
-
 }

@@ -15,20 +15,25 @@ export class SpotifyManager {
     static readonly API_URL = "https://api.spotify.com/v1";
 
     static readonly SOURCE_PREFIX = {
-        "youtube": "ytsearch:",
+        youtube: "ytsearch:",
         "youtube music": "ytmsearch:",
-        "soundcloud": "scsearch:",
+        soundcloud: "scsearch:",
     };
 
     static readonly DEFAULTS: Omit<SpotifyManagerOptions, "client"> = {
         albumPageLimit: -1,
         playlistPageLimit: -1,
         autoResolveYoutubeTracks: false,
-        loaders: [ SpotifyItemType.Album, SpotifyItemType.Artist, SpotifyItemType.Track, SpotifyItemType.Playlist ],
+        loaders: [
+            SpotifyItemType.Album,
+            SpotifyItemType.Artist,
+            SpotifyItemType.Track,
+            SpotifyItemType.Playlist,
+        ],
         market: "US",
         searchFormat: "{track} {artist}",
-        searchPrefix: "youtube"
-    }
+        searchPrefix: "youtube",
+    };
 
     /**
      * The lavaclient manager.
@@ -68,12 +73,20 @@ export class SpotifyManager {
      */
     constructor(lavaclient: Node | Cluster, options: SpotifyManagerOptions) {
         this.lavaclient = lavaclient;
-        this.options = Object.assign(SpotifyManager.DEFAULTS, options) as Required<SpotifyManagerOptions>;
+        this.options = Object.assign(
+            SpotifyManager.DEFAULTS,
+            options
+        ) as Required<SpotifyManagerOptions>;
 
-        this.loaders = [ new SpotifyAlbumLoader(), new SpotifyPlaylistLoader(), new SpotifyTrackLoader(), new SpotifyArtistLoader() ]
-            .filter(l => this.options.loaders.includes(l.itemType) ?? false);
+        this.loaders = [
+            new SpotifyAlbumLoader(),
+            new SpotifyPlaylistLoader(),
+            new SpotifyTrackLoader(),
+            new SpotifyArtistLoader(),
+        ].filter(l => this.options.loaders.includes(l.itemType) ?? false);
 
-        this.searchPrefix = SpotifyManager.SOURCE_PREFIX[options.searchPrefix ?? "youtube"];
+        this.searchPrefix =
+            SpotifyManager.SOURCE_PREFIX[options.searchPrefix ?? "youtube"];
         this.#client = options.client;
     }
 
@@ -89,7 +102,9 @@ export class SpotifyManager {
      * @private
      */
     private get encoded(): string {
-        return Buffer.from(`${this.#client.id}:${this.#client.secret}`).toString("base64");
+        return Buffer.from(
+            `${this.#client.id}:${this.#client.secret}`
+        ).toString("base64");
     }
 
     /**
@@ -97,7 +112,10 @@ export class SpotifyManager {
      * @param url The url to test.
      */
     isSpotifyUrl(url: string): boolean {
-        const matchers = this.loaders.reduce((rs, loader) => [ ...rs, ...loader.matchers ], [] as RegExp[]);
+        const matchers = this.loaders.reduce(
+            (rs, loader) => [...rs, ...loader.matchers],
+            [] as RegExp[]
+        );
         return matchers.some(r => r.test(url));
     }
 
@@ -106,12 +124,17 @@ export class SpotifyManager {
      * @param endpoint If prefixing with the base url, the endpoint. Or full URL.
      * @param prefixBaseUrl Whether to prefix the endpoint with the api base url.
      */
-    async makeRequest<T extends Dictionary = Dictionary>(endpoint: string, prefixBaseUrl = true): Promise<T> {
+    async makeRequest<T extends Dictionary = Dictionary>(
+        endpoint: string,
+        prefixBaseUrl = true
+    ): Promise<T> {
         if (!this.#token) {
             await this.renew();
         }
 
-        return fetch(`${prefixBaseUrl ? SpotifyManager.API_URL : ""}${endpoint}`)
+        return fetch(
+            `${prefixBaseUrl ? SpotifyManager.API_URL : ""}${endpoint}`
+        )
             .header("Authorization", `Bearer ${this.token}`)
             .send()
             .then(r => r.json());
@@ -128,7 +151,9 @@ export class SpotifyManager {
             return null;
         }
 
-        const loader = this.loaders.find(l => l.matchers.some(r => r.test(url)));
+        const loader = this.loaders.find(l =>
+            l.matchers.some(r => r.test(url))
+        );
         if (!loader) {
             return null;
         }
@@ -159,11 +184,14 @@ export class SpotifyManager {
      * @returns {Promise<void>}
      */
     async renew() {
-        const {
-            expires_in,
-            access_token
-        } = await fetch("https://accounts.spotify.com/api/token?grant_type=client_credentials", "POST")
-            .header({ authorization: `Basic ${this.encoded}`, "content-type": "application/x-www-form-urlencoded" })
+        const { expires_in, access_token } = await fetch(
+            "https://accounts.spotify.com/api/token?grant_type=client_credentials",
+            "POST"
+        )
+            .header({
+                authorization: `Basic ${this.encoded}`,
+                "content-type": "application/x-www-form-urlencoded",
+            })
             .send()
             .then(r => r.json());
 
@@ -174,10 +202,9 @@ export class SpotifyManager {
         this.#token = access_token;
         setTimeout(this.renew.bind(this), expires_in * 1000);
     }
-
 }
 
-export type SearchPrefix = "youtube" | "youtube music" | "soundcloud"
+export type SearchPrefix = "youtube" | "youtube music" | "soundcloud";
 
 export interface SpotifyClientOptions {
     /**

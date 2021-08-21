@@ -28,7 +28,7 @@ export class Song implements TrackInfo {
             this.position = track.info.position;
             this.title = track.info.title;
             this.uri = track.info.uri;
-            this.isSeekable = track.info.isSeekable
+            this.isSeekable = track.info.isSeekable;
             this.sourceName = track.info.sourceName;
         } else {
             const decoded = decode(this.track);
@@ -42,6 +42,5 @@ export class Song implements TrackInfo {
             this.isSeekable = !decoded.isStream;
             this.sourceName = decoded.source!;
         }
-
     }
 }

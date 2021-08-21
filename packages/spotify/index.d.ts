@@ -153,12 +153,19 @@ export abstract class Loader {
     abstract itemType: SpotifyItemType;
     abstract matchers: RegExp[];
 
-    abstract load(manager: SpotifyManager, execArray: RegExpExecArray): Promise<Item>;
+    abstract load(
+        manager: SpotifyManager,
+        execArray: RegExpExecArray
+    ): Promise<Item>;
 
     match(identifier: string): RegExpExecArray | null;
 }
 
-export type Item = SpotifyTrack | SpotifyAlbum | SpotifyPlaylist | SpotifyArtist;
+export type Item =
+    | SpotifyTrack
+    | SpotifyAlbum
+    | SpotifyPlaylist
+    | SpotifyArtist;
 
 export abstract class SpotifyItem {
     readonly manager: SpotifyManager;
@@ -171,7 +178,7 @@ export enum SpotifyItemType {
     Artist = 0,
     Playlist = 1,
     Track = 2,
-    Album = 3
+    Album = 3,
 }
 
 export class SpotifyPlaylist extends SpotifyItem {
@@ -179,7 +186,11 @@ export class SpotifyPlaylist extends SpotifyItem {
     readonly data: Spotify.Playlist;
     readonly tracks: SpotifyTrack[];
 
-    constructor(manager: SpotifyManager, album: Spotify.Playlist, tracks: Array<SpotifyTrack>);
+    constructor(
+        manager: SpotifyManager,
+        album: Spotify.Playlist,
+        tracks: Array<SpotifyTrack>
+    );
 
     get name(): string;
 
@@ -195,7 +206,11 @@ export class SpotifyAlbum extends SpotifyItem {
     data: Spotify.Album;
     readonly tracks: SpotifyTrack[];
 
-    constructor(manager: SpotifyManager, album: Spotify.Album, tracks: Array<SpotifyTrack>);
+    constructor(
+        manager: SpotifyManager,
+        album: Spotify.Album,
+        tracks: Array<SpotifyTrack>
+    );
 
     get name(): string;
 
@@ -203,7 +218,10 @@ export class SpotifyAlbum extends SpotifyItem {
 
     get artwork(): string | null;
 
-    static convertTracks(manager: SpotifyManager, tracks: Spotify.Track[]): SpotifyTrack[];
+    static convertTracks(
+        manager: SpotifyManager,
+        tracks: Spotify.Track[]
+    ): SpotifyTrack[];
 
     resolveAllTracks(): Promise<Lavalink.Track[]>;
 }
@@ -213,7 +231,11 @@ export class SpotifyArtist extends SpotifyItem {
     readonly data: Spotify.Artist;
     readonly topTracks: SpotifyTrack[];
 
-    constructor(manager: SpotifyManager, data: Spotify.Artist, topTracks: Spotify.Track[]);
+    constructor(
+        manager: SpotifyManager,
+        data: Spotify.Artist,
+        topTracks: Spotify.Track[]
+    );
 
     get name(): string;
 
@@ -268,7 +290,10 @@ export class SpotifyManager {
 
     isSpotifyUrl(url: string): boolean;
 
-    makeRequest<T extends Dictionary = Dictionary>(endpoint: string, prefixBaseUrl?: boolean): Promise<T>;
+    makeRequest<T extends Dictionary = Dictionary>(
+        endpoint: string,
+        prefixBaseUrl?: boolean
+    ): Promise<T>;
 
     load(url: string): Promise<Item | null>;
 
@@ -299,4 +324,3 @@ export class SpotifyPlugin extends Plugin {
 
     load(manager: Manager): Promise<void>;
 }
-

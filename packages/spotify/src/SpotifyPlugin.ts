@@ -8,14 +8,14 @@ export function load(options: SpotifyManagerOptions) {
         get(this: Node | ClusterNode) {
             return this instanceof ClusterNode
                 ? this.cluster.spotify
-                : this[_manager] ??= new SpotifyManager(this, options);
-        }
+                : (this[_manager] ??= new SpotifyManager(this, options));
+        },
     });
 
     Reflect.defineProperty(Cluster.prototype, "spotify", {
         get(this: Cluster) {
-            return this[_manager] ??= new SpotifyManager(this, options);
-        }
+            return (this[_manager] ??= new SpotifyManager(this, options));
+        },
     });
 }
 

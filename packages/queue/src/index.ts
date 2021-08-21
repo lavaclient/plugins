@@ -11,7 +11,7 @@ declare module "lavaclient" {
         readonly queue: Queue;
 
         /** @internal */
-        [_queue]: Queue
+        [_queue]: Queue;
     }
 
     interface ClusterEvents {
