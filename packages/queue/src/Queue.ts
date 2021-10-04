@@ -47,12 +47,16 @@ export class Queue extends TypedEmitter<QueueEvents> {
             }
 
             this.last = this.current;
-            switch (this.loop.type) {
-                case LoopType.Song:
-                    return this.player.play(this.current!, {});
-                case LoopType.Queue:
-                    this.previous.push(this.current!);
-                    break;
+            if (this.current) {
+                switch (this.loop.type) {
+                    case LoopType.Song:
+                        return this.player.play(this.current, {});
+                    case LoopType.Queue:
+                        this.previous.push(this.current);
+                        break;
+                }
+
+                this.emit("trackEnd", this.current);
             }
 
             if (!this.tracks.length) {
@@ -60,7 +64,6 @@ export class Queue extends TypedEmitter<QueueEvents> {
                 this.previous = [];
             }
 
-            this.emit("trackEnd", this.current!);
             return this.next();
         });
     }
@@ -86,6 +89,33 @@ export class Queue extends TypedEmitter<QueueEvents> {
         return true;
     }
 
+    clear(): void {
+        this.tracks = [];
+    }
+
+    remove(song: Song): Song | null;
+
+    remove(index: number): Song | null;
+
+    remove(song: Song | number): Song | null {
+        if (typeof song === "number") {
+            if (song < 0 || song >= this.tracks.length) {
+                /* maybe we should throw an exception? */
+                return null;
+            }
+
+            return this.tracks.splice(song, 1)[0] ?? null;
+        }
+
+        const index = this.tracks.indexOf(song);
+        if (index !== -1) {
+            /* maybe we should throw an exception? */
+            return null;
+        }
+
+        return this.tracks.splice(index, 1)[0] ?? null;
+    }
+
     emit<U extends keyof QueueEvents>(
         event: U,
         ...args: Parameters<QueueEvents[U]>
@@ -97,19 +127,14 @@ export class Queue extends TypedEmitter<QueueEvents> {
         return super.emit(event, ...args);
     }
 
-    add(
-        songs: Addable | Array<Addable>,
-        requester?: Snowflake | DiscordResource
-    ): number {
-        const requesterId = requester && getId(requester),
-            toAdd = Array.isArray(songs) ? songs : [songs];
-
-        this.tracks.push(
-            ...toAdd.map(song =>
+    add(songs: Addable | Array<Addable>, options: AddOptions = {}): number {
+        songs = Array.isArray(songs) ? songs : [songs];
+        const requesterId = options.requester && getId(options.requester),
+            toAdd = songs.map(song =>
                 song instanceof Song ? song : new Song(song, requesterId)
-            )
-        );
+            );
 
+        this.tracks[options.next ? "unshift" : "push"](...toAdd);
         return this.tracks.length;
     }
 
@@ -125,7 +150,7 @@ export class Queue extends TypedEmitter<QueueEvents> {
     }
 
     shuffle(): void {
-        for (let i = this.tracks.length - 1; i > 0; i--) {
+        for (let i = this.tracks.length; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [this.tracks[i], this.tracks[j]] = [this.tracks[j], this.tracks[i]];
         }
@@ -144,4 +169,9 @@ export interface Loop {
     type: LoopType;
     current: number;
     max: number;
+}
+
+export interface AddOptions {
+    requester?: Snowflake | DiscordResource;
+    next?: boolean;
 }

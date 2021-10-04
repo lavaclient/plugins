@@ -1,13 +1,13 @@
-import { Queue as BaseQueue } from "./Queue";
+import { Queue } from "./Queue";
 import { Player } from "lavaclient";
 
 /** @internal */
 export const _queue: unique symbol = Symbol.for("Player#queue");
 
-export function load(Queue: typeof BaseQueue = BaseQueue): void {
+export function load(queueClass: typeof Queue = Queue): void {
     Reflect.defineProperty(Player.prototype, "queue", {
         get(this: Player) {
-            return (this[_queue] ??= new Queue(this));
+            return (this[_queue] ??= new queueClass(this));
         },
     });
 }
