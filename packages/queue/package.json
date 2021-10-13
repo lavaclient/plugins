@@ -1,6 +1,6 @@
 {
     "name": "@lavaclient/queue",
-    "version": "2.0.3",
+    "version": "2.0.6",
     "description": "A lavaclient plugin that adds queue functionality",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -19,6 +19,9 @@
         "lavaclient",
         "lavalink"
     ],
+    "engines":{
+        "node": ">=16"
+    },
     "author": "melike2d",
     "license": "MIT",
     "bugs": {

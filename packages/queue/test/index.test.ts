@@ -3,16 +3,13 @@ import "dotenv/config";
 import "../dist";
 import "../register";
 
-import { Client, Intents, MessageEmbed } from "discord.js";
+import { Client, Intents, MessageEmbed, TextChannel } from "discord.js";
 import { Cluster } from "lavaclient";
 import { LoadType } from "@lavaclient/types";
 
 /* all the code lol */
 const client = new Client({
-    intents:
-        Intents.FLAGS.GUILDS |
-        Intents.FLAGS.GUILD_VOICE_STATES |
-        Intents.FLAGS.GUILD_MESSAGES,
+    intents: Intents.FLAGS.GUILDS | Intents.FLAGS.GUILD_VOICE_STATES | Intents.FLAGS.GUILD_MESSAGES,
 });
 
 const node = new Cluster({
@@ -40,12 +37,21 @@ client.ws.on("VOICE_STATE_UPDATE", data => node.handleVoiceUpdate(data));
 node.on("nodeConnect", node =>
     console.log(`socket "${node.id}" is now ready.`)
 );
-// @ts-expect-error
-node.on("nodeQueueFinish", (_, queue) => queue.channel.send("Queue Finished!"));
-// @ts-expect-error
-node.on("nodeTrackStart", (_, queue, track) => queue.channel.send(`**${track.title}** has started!`));
-// @ts-expect-error
-node.on("nodeTrackEnd", (_, queue, track) => queue.channel.send(`**${track.title}** has ended!`));
+
+node.on("nodeQueueFinish", (_, queue) => {
+    const channel = queue.get<TextChannel>("channel");
+    channel?.send("Queue Finished!");
+});
+
+node.on("nodeTrackStart", (_, queue, track) => {
+    const channel = queue.get<TextChannel>("channel");
+    channel?.send(`**${track.title}** has started!`);
+});
+
+node.on("nodeTrackEnd", (_, queue, track) => {
+    const channel = queue.get<TextChannel>("channel");
+    channel?.send(`**${track.title}** has ended!`);
+});
 
 /* do commands */
 client.on("messageCreate", async message => {
@@ -65,9 +71,8 @@ client.on("messageCreate", async message => {
 
             const player = node.createPlayer(message.guild!.id).connect(vc.id);
 
-            // @ts-expect-error
-            player.queue.channel = message.channel;
-            return void message.channel.send(`joined <#${vc}> against my will :ok_hand:`);
+            player.queue.set("channel", message.channel);
+            return void message.channel.send(`joined ${vc} against my will :ok_hand:`);
         }
 
         case "remove": {
@@ -80,7 +85,6 @@ client.on("messageCreate", async message => {
             const index = +args[0];
             if (Number.isNaN(index)) return void message.channel.send("you didn't provide a valid number bro.");
 
-            // @ts-expect-error
             const song = player.queue.remove(index - 1);
             if (!song) return void message.channel.send("didn't remove a song lol.");
 
@@ -152,12 +156,11 @@ client.on("messageCreate", async message => {
             if (!player.connected) {
                 if (!vc) return void message.channel.send("bruh you left the fucking vc.");
 
-                // @ts-expect-error
-                player.queue.channel = message.channel;
+                player.queue.set("channel", message.channel);
                 await player.connect(vc.id);
             }
 
-            player.queue.add(tracks, message.author.id);
+            player.queue.add(tracks, { requester: message.author.id });
             if (!player.playing && !player.paused) {
                 await player.queue.start();
             } else {

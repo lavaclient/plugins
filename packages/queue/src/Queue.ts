@@ -21,6 +21,7 @@ export class Queue extends TypedEmitter<QueueEvents> {
     loop: Loop = { type: LoopType.None, current: 0, max: -1 };
     last: Song | null = null;
     current: Song | null = null;
+    data: Record<string, any> = {};
 
     constructor(readonly player: Player) {
         super();
@@ -116,7 +117,7 @@ export class Queue extends TypedEmitter<QueueEvents> {
         return this.tracks.splice(index, 1)[0] ?? null;
     }
 
-    emit<U extends keyof QueueEvents>(
+    override emit<U extends keyof QueueEvents>(
         event: U,
         ...args: Parameters<QueueEvents[U]>
     ): boolean {
@@ -154,6 +155,32 @@ export class Queue extends TypedEmitter<QueueEvents> {
             const j = Math.floor(Math.random() * (i + 1));
             [this.tracks[i], this.tracks[j]] = [this.tracks[j], this.tracks[i]];
         }
+    }
+
+    /* context stuff */
+
+    set<T extends Record<string, any>>(data?: T): void;
+
+    set<T>(key: string, value: T): void;
+
+    set(p1: string | any, p2?: any): void {
+        if (typeof p1 !== "string") {
+            this.data = p1;
+            return;
+        }
+
+        if (p2 != null) {
+            this.data[p1] = p2;
+            return;
+        }
+    }
+
+    get<T extends Record<string, any>>(): T;
+
+    get<T>(key: string): T | null;
+
+    get(key?: string | any): any {
+        return key ? this.data[key] : this.data;
     }
 }
 

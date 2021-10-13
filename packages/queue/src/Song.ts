@@ -20,6 +20,7 @@ export class Song implements TrackInfo {
         this.track = typeof track === "string" ? track : track.track;
         this.requester = requester;
 
+        // TODO: make this less shitty
         if (typeof track !== "string") {
             this.length = track.info.length;
             this.identifier = track.info.identifier;

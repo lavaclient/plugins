@@ -15,10 +15,10 @@ declare module "lavaclient" {
     }
 
     interface ClusterEvents {
-        nodeQueueCreate: (node: Node, queue: Queue) => void;
-        nodeQueueFinish: (node: Node, queue: Queue) => void;
-        nodeTrackStart: (node: Node, queue: Queue, song: Song) => void;
-        nodeTrackEnd: (node: Node, queue: Queue, song: Song) => void;
+        nodeQueueCreate: (node: ClusterNode, queue: Queue) => void;
+        nodeQueueFinish: (node: ClusterNode, queue: Queue) => void;
+        nodeTrackStart: (node: ClusterNode, queue: Queue, song: Song) => void;
+        nodeTrackEnd: (node: ClusterNode, queue: Queue, song: Song) => void;
     }
 
     interface NodeEvents {
