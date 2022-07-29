@@ -87,14 +87,14 @@ export namespace Spotify {
         snapshot_id: string;
         type: "playlist";
         followers: FollowersObject;
-        tracks: PagingObject<PlaylistTracks>;
+        tracks: PagingObject<PlaylistTrack>;
     }
 
-    export interface PlaylistTracks {
+    export interface PlaylistTrack {
         added_at: string;
         added_by: User;
         is_local: boolean;
-        track: Track;
+        track: Track | null;
     }
 
     export interface User {

@@ -1,4 +1,4 @@
-import fetch from "centra";
+import { Pool, Dispatcher, fetch } from "undici";
 
 import { SpotifyItemType } from "./abstract/SpotifyItem";
 
@@ -8,11 +8,21 @@ import { SpotifyPlaylistLoader } from "./item/SpotifyPlaylistLoader";
 import { SpotifyTrackLoader } from "./item/SpotifyTrackLoader";
 import { SpotifyArtistLoader } from "./item/SpotifyArtistLoader";
 
-import type { Cluster, Dictionary, Node } from "lavaclient";
+import type { Dictionary, Manager as LavaclientManager } from "lavaclient";
 import type { Item, Loader } from "./abstract/Loader";
+import type { PageLoadingStrategy } from "./PageLoader";
 
 export class SpotifyManager {
-    static readonly API_URL = "https://api.spotify.com/v1";
+    static readonly API_URL = "https://api.spotify.com";
+
+    /**
+     * Loads at the maximum 10, 100-track pages, sequentially.
+     */
+    static readonly DEFAULT_PAGE_STRATEGY: PageLoadingStrategy = {
+        type: "sequential",
+        size: 100,
+        limit: 10
+    };
 
     static readonly SOURCE_PREFIX = {
         youtube: "ytsearch:",
@@ -21,9 +31,11 @@ export class SpotifyManager {
     };
 
     static readonly DEFAULTS: Omit<SpotifyManagerOptions, "client"> = {
-        albumPageLimit: -1,
-        playlistPageLimit: -1,
         autoResolveYoutubeTracks: false,
+        pages: {
+            album: SpotifyManager.DEFAULT_PAGE_STRATEGY,
+            playlist: SpotifyManager.DEFAULT_PAGE_STRATEGY
+        },
         loaders: [
             SpotifyItemType.Album,
             SpotifyItemType.Artist,
@@ -36,9 +48,14 @@ export class SpotifyManager {
     };
 
     /**
+     * The HTTP dispatcher for this spotify manager.
+     */
+    readonly dispatcher: Dispatcher;
+
+    /**
      * The lavaclient manager.
      */
-    readonly lavaclient: Cluster | Node;
+    readonly manager: LavaclientManager;
 
     /**
      * The options provided to the spotify manager.
@@ -71,16 +88,23 @@ export class SpotifyManager {
      * @param lavaclient The lavaclient manager.
      * @param options The options for this spotify manager.
      */
-    constructor(lavaclient: Node | Cluster, options: SpotifyManagerOptions) {
-        this.lavaclient = lavaclient;
+    constructor(
+        lavaclient: LavaclientManager,
+        options: SpotifyManagerOptions
+    ) {
+        this.manager = lavaclient;
+
+        this.dispatcher = new Pool(SpotifyManager.API_URL);
+
+        // TODO: use deep required
         this.options = Object.assign(
             SpotifyManager.DEFAULTS,
             options
         ) as Required<SpotifyManagerOptions>;
 
         this.loaders = [
-            new SpotifyAlbumLoader(),
-            new SpotifyPlaylistLoader(),
+            new SpotifyAlbumLoader(this.options.pages.album!),
+            new SpotifyPlaylistLoader(this.options.pages.playlist!),
             new SpotifyTrackLoader(),
             new SpotifyArtistLoader(),
         ].filter(l => this.options.loaders.includes(l.itemType) ?? false);
@@ -112,32 +136,30 @@ export class SpotifyManager {
      * @param url The url to test.
      */
     isSpotifyUrl(url: string): boolean {
-        const matchers = this.loaders.reduce(
+        const matchers = this.loaders.reduce<RegExp[]>(
             (rs, loader) => [...rs, ...loader.matchers],
-            [] as RegExp[]
+            []
         );
+
         return matchers.some(r => r.test(url));
     }
 
     /**
      * Makes a request to the spotify api.
      * @param endpoint If prefixing with the base url, the endpoint. Or full URL.
-     * @param prefixBaseUrl Whether to prefix the endpoint with the api base url.
      */
-    async makeRequest<T extends Dictionary = Dictionary>(
-        endpoint: string,
-        prefixBaseUrl = true
-    ): Promise<T> {
+    async makeRequest<T extends Dictionary = Dictionary>(endpoint: string): Promise<T> {
         if (!this.#token) {
             await this.renew();
         }
 
-        return fetch(
-            `${prefixBaseUrl ? SpotifyManager.API_URL : ""}${endpoint}`
-        )
-            .header("Authorization", `Bearer ${this.token}`)
-            .send()
-            .then(r => r.json());
+        const response = await this.dispatcher.request({
+            path: `/v1/${endpoint.replace(/^\//, "")}`,
+            method: "GET",
+            headers: { "Authorization": `Bearer ${this.token}` }
+        });
+
+        return response.body.json();
     }
 
     /**
@@ -184,23 +206,24 @@ export class SpotifyManager {
      * @returns {Promise<void>}
      */
     async renew() {
-        const { expires_in, access_token } = await fetch(
+        const response = await fetch(
             "https://accounts.spotify.com/api/token?grant_type=client_credentials",
-            "POST"
-        )
-            .header({
-                authorization: `Basic ${this.encoded}`,
-                "content-type": "application/x-www-form-urlencoded",
-            })
-            .send()
-            .then(r => r.json());
+            {
+                method: "POST",
+                headers: {
+                    authorization: `Basic ${this.encoded}`,
+                    "content-type": "application/x-www-form-urlencoded",
+                }
+            }
+        );
 
-        if (!access_token) {
+        const token = await response.json() as OauthToken;
+        if (!token.access_token) {
             throw new Error("Invalid spotify client id.");
         }
 
-        this.#token = access_token;
-        setTimeout(this.renew.bind(this), expires_in * 1000);
+        this.#token = token.access_token;
+        setTimeout(() => void this.renew(), token.expires_in * 1000);
     }
 }
 
@@ -219,12 +242,21 @@ export interface SpotifyClientOptions {
 }
 
 export interface SpotifyManagerOptions {
-    playlistPageLimit?: number;
-    albumPageLimit?: number;
+    pages?: {
+        album?: PageLoadingStrategy;
+        playlist?: PageLoadingStrategy
+    };
     client: SpotifyClientOptions;
     loaders?: SpotifyItemType[];
     autoResolveYoutubeTracks?: boolean;
     searchPrefix?: SearchPrefix;
     searchFormat?: string;
     market?: string;
+}
+
+interface OauthToken {
+    access_token: string;
+    expires_in: number;
+    token_type: string;
+    error?: string;
 }

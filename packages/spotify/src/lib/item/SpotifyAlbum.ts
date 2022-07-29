@@ -1,20 +1,20 @@
 import { SpotifyItem, SpotifyItemType } from "../abstract/SpotifyItem";
+import { createTrackFactory, SpotifyTrack } from "./SpotifyTrack";
 
-import type * as Lavalink from "@lavaclient/types";
-import type { SpotifyTrack } from "./SpotifyTrack";
+import type * as Lavalink from "@lavaclient/types/v3";
 import type { SpotifyManager } from "../SpotifyManager";
 import type { Spotify } from "../spotify";
 
-export class SpotifyPlaylist extends SpotifyItem {
-    readonly type: SpotifyItemType.Playlist = SpotifyItemType.Playlist;
+export class SpotifyAlbum extends SpotifyItem {
+    readonly type: SpotifyItemType.Album = SpotifyItemType.Album;
 
     /**
-     * The playlist data.
+     * The album data.
      */
-    readonly data: Spotify.Playlist;
+    data: Spotify.Album;
 
     /**
-     * The spotify tracks of this playlist.
+     * The spotify tracks of this album.
      * @private
      */
     readonly tracks: SpotifyTrack[];
@@ -26,7 +26,7 @@ export class SpotifyPlaylist extends SpotifyItem {
      */
     constructor(
         manager: SpotifyManager,
-        album: Spotify.Playlist,
+        album: Spotify.Album,
         tracks: Array<SpotifyTrack>
     ) {
         super(manager);
@@ -43,16 +43,20 @@ export class SpotifyPlaylist extends SpotifyItem {
     }
 
     /**
-     * The owner of this playlist.
+     * The artists that made this track.
      */
-    get owner(): Spotify.User {
-        return this.data.owner;
+    get artists(): Spotify.Artist[] {
+        return this.data.artists;
     }
 
     /**
-     * The artwork for this playlist.
+     * The artwork for this track.
      */
-    get artwork(): string {
+    get artwork(): string | null {
+        if (!this.data.images?.length) {
+            return null;
+        }
+
         const undef = this.data.images.some(i => !i.height || !i.width);
         if (undef) {
             return this.data.images[0].url;
@@ -62,7 +66,19 @@ export class SpotifyPlaylist extends SpotifyItem {
     }
 
     /**
-     * Resolves every track in this playlist.
+     * Converts raw tracks into SpotifyTracks
+     * @param manager
+     * @param tracks
+     */
+    static convertTracks(
+        manager: SpotifyManager,
+        tracks: Spotify.Track[]
+    ): SpotifyTrack[] {
+        return tracks.map(createTrackFactory(manager));
+    }
+
+    /**
+     * Resolves every track in this album.
      * @returns The resolved lavalink tracks.
      */
     async resolveYoutubeTracks(): Promise<Lavalink.Track[]> {

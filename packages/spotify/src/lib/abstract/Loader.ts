@@ -10,12 +10,12 @@ export abstract class Loader {
     /**
      * The item type this loads.
      */
-    abstract itemType: SpotifyItemType;
+    abstract readonly itemType: SpotifyItemType;
 
     /**
      * The regex(es) used for matching urls.
      */
-    abstract matchers: RegExp[];
+    abstract readonly matchers: RegExp[];
 
     /**
      * Used for loading spotify items.

@@ -1,6 +1,6 @@
 import { SpotifyItem, SpotifyItemType } from "../abstract/SpotifyItem";
 
-import type * as Lavalink from "@lavaclient/types";
+import type * as Lavalink from "@lavaclient/types/v3";
 import type { SpotifyManager } from "../SpotifyManager";
 import type { Spotify } from "../spotify";
 
@@ -74,9 +74,14 @@ export class SpotifyTrack extends SpotifyItem {
             .replace("{track}", this.data.name)
             .replace("{artist}", this.data.artists[0].name);
 
-        const searchResults = await this.manager.lavaclient.rest.loadTracks(
+        const searchResults = await this.manager.manager.rest!.loadTracks(
             query
         );
+
         return (this.#track = searchResults.tracks[0]);
     }
+}
+
+export function createTrackFactory(manager: SpotifyManager): (track: Spotify.Track) => SpotifyTrack {
+    return track => new SpotifyTrack(manager, track);
 }

@@ -1,50 +1,56 @@
 import { SpotifyItem, SpotifyItemType } from "../abstract/SpotifyItem";
-import { SpotifyTrack } from "./SpotifyTrack";
 
+import type * as Lavalink from "@lavaclient/types/v3";
+import type { SpotifyTrack } from "./SpotifyTrack";
 import type { SpotifyManager } from "../SpotifyManager";
 import type { Spotify } from "../spotify";
-import type * as Lavalink from "@lavaclient/types";
 
-export class SpotifyArtist extends SpotifyItem {
-    type: SpotifyItemType.Artist = SpotifyItemType.Artist;
-
-    /**
-     * The spotify data for this artist.
-     */
-    readonly data: Spotify.Artist;
+export class SpotifyPlaylist extends SpotifyItem {
+    readonly type: SpotifyItemType.Playlist = SpotifyItemType.Playlist;
 
     /**
-     * The top tracks for this artist.
+     * The playlist data.
      */
-    readonly topTracks: SpotifyTrack[];
+    readonly data: Spotify.Playlist;
+
+    /**
+     * The spotify tracks of this playlist.
+     * @private
+     */
+    readonly tracks: SpotifyTrack[];
 
     /**
      * @param manager The spotify manager.
-     * @param data The data for this artist.
-     * @param topTracks The top tracks for this artist.
+     * @param album
+     * @param tracks
      */
     constructor(
         manager: SpotifyManager,
-        data: Spotify.Artist,
-        topTracks: Spotify.Track[]
+        album: Spotify.Playlist,
+        tracks: Array<SpotifyTrack>
     ) {
         super(manager);
 
-        this.data = data;
-        this.topTracks = topTracks.map(
-            track => new SpotifyTrack(manager, track)
-        );
+        this.data = album;
+        this.tracks = tracks;
     }
 
     /**
-     * This artist's name.
+     * The name of this track.
      */
     get name(): string {
         return this.data.name;
     }
 
     /**
-     * The artwork for this artist.
+     * The owner of this playlist.
+     */
+    get owner(): Spotify.User {
+        return this.data.owner;
+    }
+
+    /**
+     * The artwork for this playlist.
      */
     get artwork(): string {
         const undef = this.data.images.some(i => !i.height || !i.width);
@@ -56,11 +62,11 @@ export class SpotifyArtist extends SpotifyItem {
     }
 
     /**
-     * Resolves every top track of this artist..
+     * Resolves every track in this playlist.
      * @returns The resolved lavalink tracks.
      */
     async resolveYoutubeTracks(): Promise<Lavalink.Track[]> {
-        const promises = this.topTracks.map(t => t.resolveYoutubeTrack());
+        const promises = this.tracks.map(t => t.resolveYoutubeTrack());
         return await Promise.all(promises);
     }
 }
