@@ -6,7 +6,7 @@ import {
     Player,
     Snowflake,
 } from "lavaclient";
-import { mayStartNext, Track } from "@lavaclient/types";
+import { mayStartNext, Track } from "@lavaclient/types/v3";
 import { TypedEmitter } from "tiny-typed-emitter";
 
 export enum LoopType {
@@ -51,9 +51,12 @@ export class Queue extends TypedEmitter<QueueEvents> {
             if (this.current) {
                 switch (this.loop.type) {
                     case LoopType.Song:
-                        return this.player.play(this.current, {});
+                        void this.player.play(this.current, {});
+                        return;
                     case LoopType.Queue:
                         this.previous.push(this.current);
+                        break;
+                    case LoopType.None:
                         break;
                 }
 
@@ -65,7 +68,7 @@ export class Queue extends TypedEmitter<QueueEvents> {
                 this.previous = [];
             }
 
-            return this.next();
+            void this.next();
         });
     }
 
@@ -139,7 +142,7 @@ export class Queue extends TypedEmitter<QueueEvents> {
         return this.tracks.length;
     }
 
-    setLoop(type: LoopType, max = this.loop.max): Queue {
+    setLoop(type: LoopType, max = this.loop.max): this {
         this.loop.type = type;
         this.loop.max = max;
 
@@ -171,7 +174,6 @@ export class Queue extends TypedEmitter<QueueEvents> {
 
         if (p2 != null) {
             this.data[p1] = p2;
-            return;
         }
     }
 

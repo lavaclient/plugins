@@ -1,10 +1,11 @@
-import type { _queue } from "./Plugin";
-import type { Queue } from "./Queue";
-import type { Song } from "./Song";
+import type { ClusterNode } from "lavaclient";
+import type { _queue } from "./lib/Plugin";
+import type { Queue } from "./lib/Queue";
+import type { Song } from "./lib/Song";
 
-export * from "./Queue";
-export * from "./Song";
-export * from "./Plugin";
+export * from "./lib/Queue";
+export * from "./lib/Song";
+export * from "./lib/Plugin";
 
 declare module "lavaclient" {
     interface Player {
