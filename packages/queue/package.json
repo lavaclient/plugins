@@ -1,6 +1,6 @@
 {
     "name": "@lavaclient/queue",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "A lavaclient plugin that adds queue functionality",
     "license": "Apache-2.0",
     "author": "lavaclient team <lavaclient@dimensional.fun>",
