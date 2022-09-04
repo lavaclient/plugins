@@ -41,7 +41,7 @@
 
 #### Defined in
 
-[packages/queue/src/lib/Song.ts:18](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Song.ts#L18)
+[packages/queue/src/lib/Song.ts:18](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Song.ts#L18)
 
 ## Properties
 
@@ -55,7 +55,7 @@ TrackInfo.author
 
 #### Defined in
 
-[packages/queue/src/lib/Song.ts:10](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Song.ts#L10)
+[packages/queue/src/lib/Song.ts:10](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Song.ts#L10)
 
 ___
 
@@ -69,7 +69,7 @@ TrackInfo.identifier
 
 #### Defined in
 
-[packages/queue/src/lib/Song.ts:9](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Song.ts#L9)
+[packages/queue/src/lib/Song.ts:9](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Song.ts#L9)
 
 ___
 
@@ -83,7 +83,7 @@ TrackInfo.isSeekable
 
 #### Defined in
 
-[packages/queue/src/lib/Song.ts:15](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Song.ts#L15)
+[packages/queue/src/lib/Song.ts:15](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Song.ts#L15)
 
 ___
 
@@ -97,7 +97,7 @@ TrackInfo.isStream
 
 #### Defined in
 
-[packages/queue/src/lib/Song.ts:11](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Song.ts#L11)
+[packages/queue/src/lib/Song.ts:11](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Song.ts#L11)
 
 ___
 
@@ -111,7 +111,7 @@ TrackInfo.length
 
 #### Defined in
 
-[packages/queue/src/lib/Song.ts:8](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Song.ts#L8)
+[packages/queue/src/lib/Song.ts:8](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Song.ts#L8)
 
 ___
 
@@ -125,7 +125,7 @@ TrackInfo.position
 
 #### Defined in
 
-[packages/queue/src/lib/Song.ts:12](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Song.ts#L12)
+[packages/queue/src/lib/Song.ts:12](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Song.ts#L12)
 
 ___
 
@@ -135,7 +135,7 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Song.ts:6](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Song.ts#L6)
+[packages/queue/src/lib/Song.ts:6](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Song.ts#L6)
 
 ___
 
@@ -149,7 +149,7 @@ TrackInfo.sourceName
 
 #### Defined in
 
-[packages/queue/src/lib/Song.ts:16](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Song.ts#L16)
+[packages/queue/src/lib/Song.ts:16](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Song.ts#L16)
 
 ___
 
@@ -163,7 +163,7 @@ TrackInfo.title
 
 #### Defined in
 
-[packages/queue/src/lib/Song.ts:13](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Song.ts#L13)
+[packages/queue/src/lib/Song.ts:13](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Song.ts#L13)
 
 ___
 
@@ -173,7 +173,7 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Song.ts:5](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Song.ts#L5)
+[packages/queue/src/lib/Song.ts:5](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Song.ts#L5)
 
 ___
 
@@ -187,4 +187,4 @@ TrackInfo.uri
 
 #### Defined in
 
-[packages/queue/src/lib/Song.ts:14](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Song.ts#L14)
+[packages/queue/src/lib/Song.ts:14](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Song.ts#L14)

@@ -22,7 +22,7 @@
 
 #### Defined in
 
-[lib/spotify.ts:135](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/spotify.ts#L135)
+[lib/spotify.ts:135](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/spotify.ts#L135)
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 #### Defined in
 
-[lib/spotify.ts:136](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/spotify.ts#L136)
+[lib/spotify.ts:136](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/spotify.ts#L136)
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 #### Defined in
 
-[lib/spotify.ts:137](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/spotify.ts#L137)
+[lib/spotify.ts:137](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/spotify.ts#L137)
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 #### Defined in
 
-[lib/spotify.ts:138](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/spotify.ts#L138)
+[lib/spotify.ts:138](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/spotify.ts#L138)
 
 ___
 
@@ -62,4 +62,4 @@ ___
 
 #### Defined in
 
-[lib/spotify.ts:139](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/spotify.ts#L139)
+[lib/spotify.ts:139](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/spotify.ts#L139)

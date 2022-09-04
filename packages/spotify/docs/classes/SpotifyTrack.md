@@ -51,7 +51,7 @@
 
 #### Defined in
 
-[lib/item/SpotifyTrack.ts:25](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyTrack.ts#L25)
+[lib/item/SpotifyTrack.ts:25](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyTrack.ts#L25)
 
 ## Properties
 
@@ -63,7 +63,7 @@ The lavalink track.
 
 #### Defined in
 
-[lib/item/SpotifyTrack.ts:19](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyTrack.ts#L19)
+[lib/item/SpotifyTrack.ts:19](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyTrack.ts#L19)
 
 ___
 
@@ -75,7 +75,7 @@ The spotify track data.
 
 #### Defined in
 
-[lib/item/SpotifyTrack.ts:13](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyTrack.ts#L13)
+[lib/item/SpotifyTrack.ts:13](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyTrack.ts#L13)
 
 ___
 
@@ -91,7 +91,7 @@ The spotify manager.
 
 #### Defined in
 
-[lib/abstract/SpotifyItem.ts:7](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/abstract/SpotifyItem.ts#L7)
+[lib/abstract/SpotifyItem.ts:7](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/abstract/SpotifyItem.ts#L7)
 
 ___
 
@@ -107,7 +107,7 @@ The type of spotify item this is.
 
 #### Defined in
 
-[lib/item/SpotifyTrack.ts:8](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyTrack.ts#L8)
+[lib/item/SpotifyTrack.ts:8](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyTrack.ts#L8)
 
 ## Accessors
 
@@ -123,7 +123,7 @@ The album data for this track.
 
 #### Defined in
 
-[lib/item/SpotifyTrack.ts:48](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyTrack.ts#L48)
+[lib/item/SpotifyTrack.ts:48](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyTrack.ts#L48)
 
 ___
 
@@ -139,7 +139,7 @@ The artists that made this track.
 
 #### Defined in
 
-[lib/item/SpotifyTrack.ts:41](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyTrack.ts#L41)
+[lib/item/SpotifyTrack.ts:41](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyTrack.ts#L41)
 
 ___
 
@@ -155,7 +155,7 @@ The artwork for this track.
 
 #### Defined in
 
-[lib/item/SpotifyTrack.ts:55](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyTrack.ts#L55)
+[lib/item/SpotifyTrack.ts:55](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyTrack.ts#L55)
 
 ___
 
@@ -171,7 +171,7 @@ The name of this track.
 
 #### Defined in
 
-[lib/item/SpotifyTrack.ts:34](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyTrack.ts#L34)
+[lib/item/SpotifyTrack.ts:34](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyTrack.ts#L34)
 
 ## Methods
 
@@ -187,4 +187,4 @@ Resolves the YouTube track that can be played.
 
 #### Defined in
 
-[lib/item/SpotifyTrack.ts:67](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyTrack.ts#L67)
+[lib/item/SpotifyTrack.ts:67](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyTrack.ts#L67)

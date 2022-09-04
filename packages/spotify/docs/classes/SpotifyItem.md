@@ -39,7 +39,7 @@
 
 #### Defined in
 
-[lib/abstract/SpotifyItem.ts:17](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/abstract/SpotifyItem.ts#L17)
+[lib/abstract/SpotifyItem.ts:17](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/abstract/SpotifyItem.ts#L17)
 
 ## Properties
 
@@ -51,7 +51,7 @@ The spotify manager.
 
 #### Defined in
 
-[lib/abstract/SpotifyItem.ts:7](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/abstract/SpotifyItem.ts#L7)
+[lib/abstract/SpotifyItem.ts:7](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/abstract/SpotifyItem.ts#L7)
 
 ___
 
@@ -63,4 +63,4 @@ The type of spotify item this is.
 
 #### Defined in
 
-[lib/abstract/SpotifyItem.ts:12](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/abstract/SpotifyItem.ts#L12)
+[lib/abstract/SpotifyItem.ts:12](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/abstract/SpotifyItem.ts#L12)

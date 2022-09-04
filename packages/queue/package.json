@@ -45,6 +45,7 @@
         "build:types": "rtb --dist dist -b build:ts",
         "esm:register": "gen-esm-wrapper register.js register.mjs",
         "esm:default": "gen-esm-wrapper dist/index.js dist/index.mjs",
+        "docs": "typedoc src/index.ts --tsconfig src/tsconfig.json",
         "lint": "dprint check && eslint src --ext js,ts",
         "format": "dprint fmt && eslint src --ext js,ts --fix",
         "prepublishOnly": "yarn build"

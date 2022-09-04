@@ -20,6 +20,7 @@
 - [data](Queue.md#data)
 - [last](Queue.md#last)
 - [loop](Queue.md#loop)
+- [options](Queue.md#options)
 - [player](Queue.md#player)
 - [previous](Queue.md#previous)
 - [tracks](Queue.md#tracks)
@@ -58,13 +59,14 @@
 
 ### constructor
 
-• **new Queue**(`player`)
+• **new Queue**(`player`, `options`)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `player` | `Player`<`Node`\> |
+| `options` | [`QueueOptions`](../interfaces/QueueOptions.md) |
 
 #### Overrides
 
@@ -72,7 +74,7 @@ TypedEmitter&lt;QueueEvents\&gt;.constructor
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:26](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L26)
+[packages/queue/src/lib/Queue.ts:30](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L30)
 
 ## Properties
 
@@ -82,7 +84,7 @@ TypedEmitter&lt;QueueEvents\&gt;.constructor
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:23](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L23)
+[packages/queue/src/lib/Queue.ts:27](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L27)
 
 ___
 
@@ -92,7 +94,7 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:24](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L24)
+[packages/queue/src/lib/Queue.ts:28](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L28)
 
 ___
 
@@ -102,7 +104,7 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:22](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L22)
+[packages/queue/src/lib/Queue.ts:26](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L26)
 
 ___
 
@@ -112,7 +114,17 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:21](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L21)
+[packages/queue/src/lib/Queue.ts:25](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L25)
+
+___
+
+### options
+
+• `Readonly` **options**: [`QueueOptions`](../interfaces/QueueOptions.md)
+
+#### Defined in
+
+[packages/queue/src/lib/Queue.ts:32](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L32)
 
 ___
 
@@ -122,7 +134,7 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:26](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L26)
+[packages/queue/src/lib/Queue.ts:31](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L31)
 
 ___
 
@@ -132,7 +144,7 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:20](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L20)
+[packages/queue/src/lib/Queue.ts:24](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L24)
 
 ___
 
@@ -142,7 +154,7 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:19](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L19)
+[packages/queue/src/lib/Queue.ts:23](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L23)
 
 ___
 
@@ -177,7 +189,7 @@ node_modules/tiny-typed-emitter/lib/index.d.ts:10
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:134](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L134)
+[packages/queue/src/lib/Queue.ts:141](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L141)
 
 ___
 
@@ -222,7 +234,7 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:96](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L96)
+[packages/queue/src/lib/Queue.ts:103](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L103)
 
 ___
 
@@ -253,7 +265,7 @@ TypedEmitter.emit
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:123](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L123)
+[packages/queue/src/lib/Queue.ts:130](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L130)
 
 ___
 
@@ -297,7 +309,7 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:180](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L180)
+[packages/queue/src/lib/Queue.ts:187](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L187)
 
 ▸ **get**<`T`\>(`key`): ``null`` \| `T`
 
@@ -319,7 +331,7 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:182](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L182)
+[packages/queue/src/lib/Queue.ts:189](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L189)
 
 ___
 
@@ -405,7 +417,7 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:84](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L84)
+[packages/queue/src/lib/Queue.ts:91](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L91)
 
 ___
 
@@ -610,7 +622,7 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:100](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L100)
+[packages/queue/src/lib/Queue.ts:107](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L107)
 
 ▸ **remove**(`index`): ``null`` \| [`Song`](Song.md)
 
@@ -626,7 +638,7 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:102](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L102)
+[packages/queue/src/lib/Queue.ts:109](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L109)
 
 ___
 
@@ -707,7 +719,7 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:165](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L165)
+[packages/queue/src/lib/Queue.ts:172](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L172)
 
 ▸ **set**<`T`\>(`key`, `value`): `void`
 
@@ -730,7 +742,7 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:167](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L167)
+[packages/queue/src/lib/Queue.ts:174](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L174)
 
 ___
 
@@ -751,7 +763,7 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:145](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L145)
+[packages/queue/src/lib/Queue.ts:152](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L152)
 
 ___
 
@@ -789,7 +801,7 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:156](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L156)
+[packages/queue/src/lib/Queue.ts:163](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L163)
 
 ___
 
@@ -803,7 +815,7 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:75](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L75)
+[packages/queue/src/lib/Queue.ts:82](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L82)
 
 ___
 
@@ -823,7 +835,7 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:152](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L152)
+[packages/queue/src/lib/Queue.ts:159](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L159)
 
 ___
 
@@ -837,4 +849,4 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:80](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L80)
+[packages/queue/src/lib/Queue.ts:87](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L87)

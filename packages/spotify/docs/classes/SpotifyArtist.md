@@ -50,7 +50,7 @@
 
 #### Defined in
 
-[lib/item/SpotifyArtist.ts:26](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyArtist.ts#L26)
+[lib/item/SpotifyArtist.ts:26](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyArtist.ts#L26)
 
 ## Properties
 
@@ -62,7 +62,7 @@ The spotify data for this artist.
 
 #### Defined in
 
-[lib/item/SpotifyArtist.ts:14](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyArtist.ts#L14)
+[lib/item/SpotifyArtist.ts:14](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyArtist.ts#L14)
 
 ___
 
@@ -78,7 +78,7 @@ The spotify manager.
 
 #### Defined in
 
-[lib/abstract/SpotifyItem.ts:7](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/abstract/SpotifyItem.ts#L7)
+[lib/abstract/SpotifyItem.ts:7](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/abstract/SpotifyItem.ts#L7)
 
 ___
 
@@ -90,7 +90,7 @@ The top tracks for this artist.
 
 #### Defined in
 
-[lib/item/SpotifyArtist.ts:19](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyArtist.ts#L19)
+[lib/item/SpotifyArtist.ts:19](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyArtist.ts#L19)
 
 ___
 
@@ -106,7 +106,7 @@ The type of spotify item this is.
 
 #### Defined in
 
-[lib/item/SpotifyArtist.ts:9](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyArtist.ts#L9)
+[lib/item/SpotifyArtist.ts:9](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyArtist.ts#L9)
 
 ## Accessors
 
@@ -122,7 +122,7 @@ The artwork for this artist.
 
 #### Defined in
 
-[lib/item/SpotifyArtist.ts:49](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyArtist.ts#L49)
+[lib/item/SpotifyArtist.ts:49](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyArtist.ts#L49)
 
 ___
 
@@ -138,7 +138,7 @@ This artist's name.
 
 #### Defined in
 
-[lib/item/SpotifyArtist.ts:42](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyArtist.ts#L42)
+[lib/item/SpotifyArtist.ts:42](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyArtist.ts#L42)
 
 ## Methods
 
@@ -156,4 +156,4 @@ The resolved lavalink tracks.
 
 #### Defined in
 
-[lib/item/SpotifyArtist.ts:62](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyArtist.ts#L62)
+[lib/item/SpotifyArtist.ts:62](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyArtist.ts#L62)

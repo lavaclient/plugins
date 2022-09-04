@@ -19,7 +19,7 @@ The client id to use for authorization.
 
 #### Defined in
 
-[lib/SpotifyManager.ts:236](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L236)
+[lib/SpotifyManager.ts:236](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L236)
 
 ___
 
@@ -31,4 +31,4 @@ The client secret to use for authorization.
 
 #### Defined in
 
-[lib/SpotifyManager.ts:241](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L241)
+[lib/SpotifyManager.ts:241](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L241)

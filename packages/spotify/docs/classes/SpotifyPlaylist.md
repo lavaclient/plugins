@@ -51,7 +51,7 @@
 
 #### Defined in
 
-[lib/item/SpotifyPlaylist.ts:27](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyPlaylist.ts#L27)
+[lib/item/SpotifyPlaylist.ts:27](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyPlaylist.ts#L27)
 
 ## Properties
 
@@ -63,7 +63,7 @@ The playlist data.
 
 #### Defined in
 
-[lib/item/SpotifyPlaylist.ts:14](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyPlaylist.ts#L14)
+[lib/item/SpotifyPlaylist.ts:14](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyPlaylist.ts#L14)
 
 ___
 
@@ -79,7 +79,7 @@ The spotify manager.
 
 #### Defined in
 
-[lib/abstract/SpotifyItem.ts:7](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/abstract/SpotifyItem.ts#L7)
+[lib/abstract/SpotifyItem.ts:7](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/abstract/SpotifyItem.ts#L7)
 
 ___
 
@@ -91,7 +91,7 @@ The spotify tracks of this playlist.
 
 #### Defined in
 
-[lib/item/SpotifyPlaylist.ts:20](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyPlaylist.ts#L20)
+[lib/item/SpotifyPlaylist.ts:20](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyPlaylist.ts#L20)
 
 ___
 
@@ -107,7 +107,7 @@ The type of spotify item this is.
 
 #### Defined in
 
-[lib/item/SpotifyPlaylist.ts:9](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyPlaylist.ts#L9)
+[lib/item/SpotifyPlaylist.ts:9](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyPlaylist.ts#L9)
 
 ## Accessors
 
@@ -123,7 +123,7 @@ The artwork for this playlist.
 
 #### Defined in
 
-[lib/item/SpotifyPlaylist.ts:55](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyPlaylist.ts#L55)
+[lib/item/SpotifyPlaylist.ts:55](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyPlaylist.ts#L55)
 
 ___
 
@@ -139,7 +139,7 @@ The name of this track.
 
 #### Defined in
 
-[lib/item/SpotifyPlaylist.ts:41](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyPlaylist.ts#L41)
+[lib/item/SpotifyPlaylist.ts:41](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyPlaylist.ts#L41)
 
 ___
 
@@ -155,7 +155,7 @@ The owner of this playlist.
 
 #### Defined in
 
-[lib/item/SpotifyPlaylist.ts:48](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyPlaylist.ts#L48)
+[lib/item/SpotifyPlaylist.ts:48](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyPlaylist.ts#L48)
 
 ## Methods
 
@@ -173,4 +173,4 @@ The resolved lavalink tracks.
 
 #### Defined in
 
-[lib/item/SpotifyPlaylist.ts:68](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/item/SpotifyPlaylist.ts#L68)
+[lib/item/SpotifyPlaylist.ts:68](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/item/SpotifyPlaylist.ts#L68)

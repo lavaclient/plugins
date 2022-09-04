@@ -22,7 +22,7 @@
 
 #### Defined in
 
-[lib/SpotifyManager.ts:251](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L251)
+[lib/SpotifyManager.ts:251](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L251)
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 #### Defined in
 
-[lib/SpotifyManager.ts:249](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L249)
+[lib/SpotifyManager.ts:249](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L249)
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 #### Defined in
 
-[lib/SpotifyManager.ts:250](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L250)
+[lib/SpotifyManager.ts:250](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L250)
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 #### Defined in
 
-[lib/SpotifyManager.ts:254](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L254)
+[lib/SpotifyManager.ts:254](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L254)
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 #### Defined in
 
-[lib/SpotifyManager.ts:245](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L245)
+[lib/SpotifyManager.ts:245](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L245)
 
 ___
 
@@ -79,7 +79,7 @@ ___
 
 #### Defined in
 
-[lib/SpotifyManager.ts:253](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L253)
+[lib/SpotifyManager.ts:253](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L253)
 
 ___
 
@@ -89,4 +89,4 @@ ___
 
 #### Defined in
 
-[lib/SpotifyManager.ts:252](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L252)
+[lib/SpotifyManager.ts:252](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L252)

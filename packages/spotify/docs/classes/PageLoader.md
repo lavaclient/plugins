@@ -34,7 +34,7 @@
 
 #### Defined in
 
-[lib/PageLoader.ts:13](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/PageLoader.ts#L13)
+[lib/PageLoader.ts:13](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/PageLoader.ts#L13)
 
 ## Properties
 
@@ -44,7 +44,7 @@
 
 #### Defined in
 
-[lib/PageLoader.ts:7](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/PageLoader.ts#L7)
+[lib/PageLoader.ts:7](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/PageLoader.ts#L7)
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 #### Defined in
 
-[lib/PageLoader.ts:11](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/PageLoader.ts#L11)
+[lib/PageLoader.ts:11](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/PageLoader.ts#L11)
 
 ___
 
@@ -79,7 +79,7 @@ ___
 
 #### Defined in
 
-[lib/PageLoader.ts:9](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/PageLoader.ts#L9)
+[lib/PageLoader.ts:9](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/PageLoader.ts#L9)
 
 ## Methods
 
@@ -100,7 +100,7 @@ ___
 
 #### Defined in
 
-[lib/PageLoader.ts:59](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/PageLoader.ts#L59)
+[lib/PageLoader.ts:59](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/PageLoader.ts#L59)
 
 ___
 
@@ -122,7 +122,7 @@ ___
 
 #### Defined in
 
-[lib/PageLoader.ts:25](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/PageLoader.ts#L25)
+[lib/PageLoader.ts:25](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/PageLoader.ts#L25)
 
 ___
 
@@ -143,4 +143,4 @@ ___
 
 #### Defined in
 
-[lib/PageLoader.ts:21](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/PageLoader.ts#L21)
+[lib/PageLoader.ts:21](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/PageLoader.ts#L21)

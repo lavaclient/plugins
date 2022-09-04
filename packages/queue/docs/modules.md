@@ -18,6 +18,7 @@
 - [AddOptions](interfaces/AddOptions.md)
 - [Loop](interfaces/Loop.md)
 - [QueueEvents](interfaces/QueueEvents.md)
+- [QueueOptions](interfaces/QueueOptions.md)
 
 ### Type Aliases
 
@@ -39,7 +40,7 @@
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:189](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L189)
+[packages/queue/src/lib/Queue.ts:196](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L196)
 
 ## Variables
 
@@ -49,19 +50,19 @@
 
 #### Defined in
 
-[packages/queue/src/lib/Plugin.ts:5](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Plugin.ts#L5)
+[packages/queue/src/lib/Plugin.ts:5](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Plugin.ts#L5)
 
 ## Functions
 
 ### load
 
-▸ **load**(`queueClass?`): `void`
+▸ **load**(`createQueue?`): `void`
 
 #### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
-| `queueClass` | typeof [`Queue`](classes/Queue.md) | `Queue` |
+| `createQueue` | (`player`: `Player`<`Node`\>) => [`Queue`](classes/Queue.md) | `defaultCreateQueue` |
 
 #### Returns
 
@@ -69,4 +70,4 @@
 
 #### Defined in
 
-[packages/queue/src/lib/Plugin.ts:7](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Plugin.ts#L7)
+[packages/queue/src/lib/Plugin.ts:11](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Plugin.ts#L11)

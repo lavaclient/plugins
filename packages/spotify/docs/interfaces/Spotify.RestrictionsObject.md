@@ -18,4 +18,4 @@
 
 #### Defined in
 
-[lib/spotify.ts:41](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/spotify.ts#L41)
+[lib/spotify.ts:41](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/spotify.ts#L41)

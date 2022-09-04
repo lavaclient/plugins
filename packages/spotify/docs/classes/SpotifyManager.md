@@ -49,7 +49,7 @@
 
 #### Defined in
 
-[lib/SpotifyManager.ts:91](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L91)
+[lib/SpotifyManager.ts:91](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L91)
 
 ## Properties
 
@@ -61,7 +61,7 @@ The client id.
 
 #### Defined in
 
-[lib/SpotifyManager.ts:85](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L85)
+[lib/SpotifyManager.ts:85](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L85)
 
 ___
 
@@ -73,7 +73,7 @@ The token to use.
 
 #### Defined in
 
-[lib/SpotifyManager.ts:79](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L79)
+[lib/SpotifyManager.ts:79](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L79)
 
 ___
 
@@ -85,7 +85,7 @@ The HTTP dispatcher for this spotify manager.
 
 #### Defined in
 
-[lib/SpotifyManager.ts:53](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L53)
+[lib/SpotifyManager.ts:53](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L53)
 
 ___
 
@@ -97,7 +97,7 @@ The enabled loaders.
 
 #### Defined in
 
-[lib/SpotifyManager.ts:68](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L68)
+[lib/SpotifyManager.ts:68](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L68)
 
 ___
 
@@ -109,7 +109,7 @@ The lavaclient manager.
 
 #### Defined in
 
-[lib/SpotifyManager.ts:58](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L58)
+[lib/SpotifyManager.ts:58](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L58)
 
 ___
 
@@ -121,7 +121,7 @@ The options provided to the spotify manager.
 
 #### Defined in
 
-[lib/SpotifyManager.ts:63](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L63)
+[lib/SpotifyManager.ts:63](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L63)
 
 ___
 
@@ -133,7 +133,7 @@ The source used for resolving lavalink tracks.
 
 #### Defined in
 
-[lib/SpotifyManager.ts:73](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L73)
+[lib/SpotifyManager.ts:73](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L73)
 
 ___
 
@@ -143,7 +143,7 @@ ___
 
 #### Defined in
 
-[lib/SpotifyManager.ts:16](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L16)
+[lib/SpotifyManager.ts:16](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L16)
 
 ___
 
@@ -153,7 +153,7 @@ ___
 
 #### Defined in
 
-[lib/SpotifyManager.ts:33](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L33)
+[lib/SpotifyManager.ts:33](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L33)
 
 ___
 
@@ -165,7 +165,7 @@ Loads at the maximum 10, 100-track pages, sequentially.
 
 #### Defined in
 
-[lib/SpotifyManager.ts:21](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L21)
+[lib/SpotifyManager.ts:21](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L21)
 
 ___
 
@@ -183,7 +183,7 @@ ___
 
 #### Defined in
 
-[lib/SpotifyManager.ts:27](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L27)
+[lib/SpotifyManager.ts:27](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L27)
 
 ## Accessors
 
@@ -199,7 +199,7 @@ The authorization used for tokens.
 
 #### Defined in
 
-[lib/SpotifyManager.ts:128](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L128)
+[lib/SpotifyManager.ts:128](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L128)
 
 ___
 
@@ -215,7 +215,7 @@ The current access token.
 
 #### Defined in
 
-[lib/SpotifyManager.ts:120](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L120)
+[lib/SpotifyManager.ts:120](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L120)
 
 ## Methods
 
@@ -237,7 +237,7 @@ Determine whether a URL is a spotify url.
 
 #### Defined in
 
-[lib/SpotifyManager.ts:138](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L138)
+[lib/SpotifyManager.ts:138](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L138)
 
 ___
 
@@ -261,7 +261,7 @@ The loaded spotify resource.
 
 #### Defined in
 
-[lib/SpotifyManager.ts:171](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L171)
+[lib/SpotifyManager.ts:171](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L171)
 
 ___
 
@@ -289,7 +289,7 @@ Makes a request to the spotify api.
 
 #### Defined in
 
-[lib/SpotifyManager.ts:151](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L151)
+[lib/SpotifyManager.ts:151](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L151)
 
 ___
 
@@ -305,4 +305,4 @@ Requests the spotify token and schedules to renew it.
 
 #### Defined in
 
-[lib/SpotifyManager.ts:208](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/SpotifyManager.ts#L208)
+[lib/SpotifyManager.ts:208](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/SpotifyManager.ts#L208)

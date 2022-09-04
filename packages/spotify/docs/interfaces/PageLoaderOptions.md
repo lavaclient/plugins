@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[lib/PageLoader.ts:68](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/PageLoader.ts#L68)
+[lib/PageLoader.ts:68](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/PageLoader.ts#L68)
 
 ___
 
@@ -43,7 +43,7 @@ ___
 
 #### Defined in
 
-[lib/PageLoader.ts:70](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/PageLoader.ts#L70)
+[lib/PageLoader.ts:70](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/PageLoader.ts#L70)
 
 ___
 
@@ -53,4 +53,4 @@ ___
 
 #### Defined in
 
-[lib/PageLoader.ts:69](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/PageLoader.ts#L69)
+[lib/PageLoader.ts:69](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/PageLoader.ts#L69)

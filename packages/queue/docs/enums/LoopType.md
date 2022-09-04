@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:13](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L13)
+[packages/queue/src/lib/Queue.ts:13](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L13)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:14](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L14)
+[packages/queue/src/lib/Queue.ts:14](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L14)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-[packages/queue/src/lib/Queue.ts:15](https://github.com/lavaclient/plugins/blob/f4114e8/packages/queue/src/lib/Queue.ts#L15)
+[packages/queue/src/lib/Queue.ts:15](https://github.com/lavaclient/plugins/blob/072af81/packages/queue/src/lib/Queue.ts#L15)

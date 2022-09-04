@@ -34,7 +34,7 @@ The item type this loads.
 
 #### Defined in
 
-[lib/abstract/Loader.ts:13](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/abstract/Loader.ts#L13)
+[lib/abstract/Loader.ts:13](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/abstract/Loader.ts#L13)
 
 ___
 
@@ -46,7 +46,7 @@ The regex(es) used for matching urls.
 
 #### Defined in
 
-[lib/abstract/Loader.ts:18](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/abstract/Loader.ts#L18)
+[lib/abstract/Loader.ts:18](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/abstract/Loader.ts#L18)
 
 ## Methods
 
@@ -71,7 +71,7 @@ A spotify item (album, playlist, or track)
 
 #### Defined in
 
-[lib/abstract/Loader.ts:24](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/abstract/Loader.ts#L24)
+[lib/abstract/Loader.ts:24](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/abstract/Loader.ts#L24)
 
 ___
 
@@ -93,4 +93,4 @@ Used for finding this loader.
 
 #### Defined in
 
-[lib/abstract/Loader.ts:34](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/abstract/Loader.ts#L34)
+[lib/abstract/Loader.ts:34](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/abstract/Loader.ts#L34)

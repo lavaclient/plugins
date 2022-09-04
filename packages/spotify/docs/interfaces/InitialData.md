@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[lib/PageLoader.ts:92](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/PageLoader.ts#L92)
+[lib/PageLoader.ts:92](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/PageLoader.ts#L92)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-[lib/PageLoader.ts:91](https://github.com/lavaclient/plugins/blob/122f37d/packages/spotify/src/lib/PageLoader.ts#L91)
+[lib/PageLoader.ts:91](https://github.com/lavaclient/plugins/blob/072af81/packages/spotify/src/lib/PageLoader.ts#L91)
