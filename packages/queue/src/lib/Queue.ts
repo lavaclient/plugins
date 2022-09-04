@@ -15,6 +15,10 @@ export enum LoopType {
     Song,
 }
 
+export interface QueueOptions {
+    play: (queue: Queue, song: Song) => Promise<void>;
+}
+
 export class Queue extends TypedEmitter<QueueEvents> {
     tracks: Song[] = [];
     previous: Song[] = [];
@@ -23,7 +27,10 @@ export class Queue extends TypedEmitter<QueueEvents> {
     current: Song | null = null;
     data: Record<string, any> = {};
 
-    constructor(readonly player: Player) {
+    constructor(
+        readonly player: Player,
+        readonly options: QueueOptions
+    ) {
         super();
 
         player.on("trackStart", () => {
@@ -42,7 +49,7 @@ export class Queue extends TypedEmitter<QueueEvents> {
             this.emit("trackStart", this.current);
         });
 
-        player.on("trackEnd", (_, reason) => {
+        player.on("trackEnd", async (_, reason) => {
             if (!mayStartNext[reason]) {
                 return;
             }
@@ -51,7 +58,7 @@ export class Queue extends TypedEmitter<QueueEvents> {
             if (this.current) {
                 switch (this.loop.type) {
                     case LoopType.Song:
-                        void this.player.play(this.current, {});
+                        await this.options.play(this, this.current);
                         return;
                     case LoopType.Queue:
                         this.previous.push(this.current);
@@ -68,7 +75,7 @@ export class Queue extends TypedEmitter<QueueEvents> {
                 this.previous = [];
             }
 
-            void this.next();
+            await this.next();
         });
     }
 
@@ -89,7 +96,7 @@ export class Queue extends TypedEmitter<QueueEvents> {
         }
 
         this.current = next;
-        await this.player.play(next, {});
+        await this.options.play(this, next);
         return true;
     }
 
